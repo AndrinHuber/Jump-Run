@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Game</title>
   </head> 
+  <body>
     <div id="gameholder">
       <div id="game" onclick="start(); ">
         <p id="counter">0</p>
@@ -50,11 +51,6 @@
     var isRunning = new Boolean(false);
     var isgameOver = false;
 
-    var highscore = localStorage.getItem("highscoreText");
-    if(highscore == undefined){
-      highscore = 0;
-    }
-
     block.style.animation = "none";
     block2.style.animation = "none";
     block.style.visibility = "hidden";
@@ -64,7 +60,35 @@
     grass2.style.animationDuration = "0s";
     gameOver.style.visibility = "hidden";
     gameOver3d.style.visibility = "hidden";
+    checkifBanned();
 
+    window.addEventListener('storage', function(e) {
+      changeMessage();
+    });
+
+    function checkifBanned(){
+      if(localStorage.getItem('penaltyText') >= 2){
+        while(0 == 0) {
+          alert("Du Kannst dieses Spiel NICHT MEHR SPIELEN, weil du betrügen wolltest!");
+        }
+      }
+    }
+    
+    function changeMessage(){
+      localStorage.setItem('highscoreText', 0);
+
+      if(localStorage.getItem('penaltyText') == null || localStorage.getItem('penaltyText') == ""){
+        localStorage.setItem('penaltyText', 0);
+      }
+      if(localStorage.getItem('penaltyText') == 0){
+        localStorage.setItem('penaltyText', 1);
+        alert("Bitte verändere den LocalStorage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird dir beim nächsten mal ALLES Zurückgesetzt und du kannst das Spiel NICHT mehr spielen! :)");
+      }else{
+        localStorage.setItem('penaltyText', 2);
+        alert("Bitte verändere den LocalStorage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird jetzt alles Zurückgesetzt und das spielen UNMÖGLICH gemacht! :)");
+        checkifBanned();
+      }
+    }
 
     document.body.onkeydown = function(e){
       switch(isgameOver){
@@ -224,11 +248,15 @@
         block.style.animation = "none";
         block2.style.animation = "none";
         //HIGHSCORE NACHRICHT
+        var highscore = localStorage.getItem("highscoreText");
         switch(true){
-          case (localStorage.getItem("highscoreText") == null):
+          case (highscore == null  || highscore == ""):
             localStorage.setItem('highscoreText', 0);
             break;
-          case (localStorage.getItem("highscoreText") < counter):
+          case (isNaN(highscore)):
+            changeMessage();
+            break;
+          case (highscore < counter):
             localStorage.setItem('highscoreText', counter);
             break;
         }
