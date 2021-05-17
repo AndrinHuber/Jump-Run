@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Game</title>
+  </head> 
+    <div id="gameholder">
+      <div id="game" onclick="start(); ">
+        <p id="counter">0</p>
+        <p id="starttext">Um das Spiel zu starten Drücke:<br> [Klick] / [Leertaste] / [KeyUP]</p>
+        <div id="character"><img id="characterPic" src="bilder/giraffe.png"></div>
+        <div id="block1"><img id="enemy1Pic" src="bilder/Hund.png"></div>
+        <div id="block2"><img id="enemy2Pic" src="bilder/Tintenfisch.png"></div> 
+        <img id="grass" src="bilder/grass.png">
+        <img id="grass2" src="bilder/grass.png">
+      </div>
+      <div id="game3d"></div>
+      <div id="gameOver">
+        <div id="gameoverText">GAME OVER</div>
+        <div id="scoreText">Score: </div>
+        <div id="highscoreText">Highscore: </div>
+        <button id="gameoverbutton" onclick="closeGameover();">Play</button>
+        <div id="gameoverbutton3d"></div>
+      </div>
+      <div id="gameOver3d"></div>
+    </div>
+  </body>
+  <script>
+    var gameDiv = document.getElementById("game");
+    var character = document.getElementById("character");
+    var block = document.getElementById("block1");
+    var block2 = document.getElementById("block2");
+    var counterHTML = document.getElementById("counter");
+    var startText = document.getElementById("starttext");
+    var characterPic = document.getElementById("characterPic");
+    var enemy1Pic = document.getElementById("enemy1Pic");
+    var enemy2Pic = document.getElementById("enemy2Pic");
+    var grass = document.getElementById("grass");
+    var grass2 = document.getElementById("grass2");
+    var Textscore = document.getElementById("scoreText");
+    var Texthighscore = document.getElementById("highscoreText");
+    var gameOver = document.getElementById("gameOver");
+    var gameOver3d = document.getElementById("gameOver3d");
+    var gameoverbutton = document.getElementById("gameoverbutton");
+    var counter = 0;
+    var velocity = 3;
+    var speed = 0.01;
+    var isRunning = new Boolean(false);
+    var isgameOver = false;
+
+    var highscore = localStorage.getItem("highscoreText");
+    if(highscore == undefined){
+      highscore = 0;
+    }
+
+    block.style.animation = "none";
+    block2.style.animation = "none";
+    block.style.visibility = "hidden";
+    block2.style.visibility = "hidden";
+    gameDiv.style.cursor = "pointer";
+    grass.style.animationDuration = "0s";
+    grass2.style.animationDuration = "0s";
+    gameOver.style.visibility = "hidden";
+    gameOver3d.style.visibility = "hidden";
+
+
+    document.body.onkeydown = function(e){
+      switch(isgameOver){
+        case false:
+          if(e.keyCode == 32 || e.keyCode == 38){
+            switch(true){
+              case (character.classList != "animate" && character.classList != "animate2"):
+                jump();
+                break;
+              case (character.classList == "animate"):
+                doublejump();
+                break;
+            }
+          }
+          break;
+        case true:
+          if(e.keyCode == 13){
+            closeGameover();
+          }
+          break; 
+      }
+    }
+
+    function jump(){
+      if(character.classList != "animate"){
+        if(isRunning == false && isgameOver == false){ start(); }
+        character.classList.add("animate");
+        setTimeout(function(){
+          character.classList.remove("animate");
+        },800);
+      }
+    }
+
+    function doublejump(){
+      character.classList.add("animate2");
+      setTimeout(function(){
+        character.classList.remove("animate2");
+      },600);
+    }
+
+    var startAnimations = setInterval(function(){
+      if(isRunning == true && isgameOver == false){
+        grass.style.animationDuration = "2.5s";
+        grass2.style.animationDuration = "2.5s";
+        characterPic.src = "bilder/giraffe-2.png";
+        enemy1Pic.src = "bilder/Hund-2.png";
+        enemy2Pic.src = "bilder/Tintenfisch-2.png";
+        setTimeout(() => {
+          if(isRunning == true && isgameOver == false){
+            characterPic.src = "bilder/giraffe-1.png";
+            enemy1Pic.src = "bilder/Hund-1.png";
+            enemy2Pic.src = "bilder/Tintenfisch-1.png";
+          }
+        }, 100);
+        setTimeout(() => {
+        }, 100);
+      }
+    },200);
+
+    var makeFasterandRandom = setInterval(function(){
+      if(velocity >= 1){
+      if(parseInt(window.getComputedStyle(block).getPropertyValue("left"))<=-20){
+          counter = counter + 1;
+          counterHTML.innerHTML = counter;
+        block.style.animation = "none";
+        block.style.visibility = "hidden";
+        setTimeout(() => {
+          setTimeout(() => {
+            if(isRunning == true && isgameOver == false){
+              block.style.visibility = "visible";
+              setAnimationNew(block);
+              velocity = velocity - speed;
+              block.style.animationDuration = velocity + "s";
+            }
+          }, 100);
+        }, Math.floor(Math.random() * 1000));
+      }
+      if(parseInt(window.getComputedStyle(block2).getPropertyValue("left"))<=-20){
+          counter = counter + 1;
+          counterHTML.innerHTML = counter;
+        block2.style.animation = "none";
+        block2.style.visibility = "hidden";
+        setTimeout(() => {
+          setTimeout(() => {
+            if(isRunning == true && isgameOver == false){
+              block2.style.visibility = "visible";
+              setAnimationNew(block2);
+              velocity = velocity - speed;
+              block2.style.animationDuration = velocity + "s";
+            }
+          }, 100);
+        }, Math.floor(Math.random() * 3000));
+      }
+    }
+    },50)
+
+    function setAnimationNew(blockType){
+      switch(blockType){
+        case block:
+          blockType.style.animation = "block";
+          break;
+        case block2:
+          blockType.style.animation = "block2";
+          break;
+      }
+      blockType.style.animationIterationCount = "infinite";
+      blockType.style.animationTimingFunction = "linear";
+    }
+
+    function start(){
+      if(isRunning == false && isgameOver == false){
+        isRunning = true;
+        grass.style.animationDuration = "2.5s";
+        grass2.style.animationDuration = "2.5s";
+        gameoverbutton.style.transition = ".1s";
+        startText.style.visibility = "hidden";
+        gameDiv.style.cursor = "default";
+        velocity = 3;
+        block.style.visibility = "visible";
+        block2.style.visibility = "visible";
+        setAnimationNew(block);
+        setAnimationNew(block2);
+        block.style.animationDuration = velocity + "s";
+        block2.style.animationDuration = velocity + "s";
+      }
+    }
+
+    function closeGameover(){
+      isgameOver = false;
+      gameoverbutton.style.transition = "none";
+      gameOver.style.visibility = "hidden";
+      gameOver3d.style.visibility = "hidden";
+      startText.style.display = "block";
+      gameDiv.style.cursor = "pointer";
+      startText.style.visibility='visible';
+      gameDiv.classList.add("startclick");
+      characterPic.src = "bilder/giraffe.png";
+      counter = 0;
+      counterHTML.innerHTML = counter;
+    }
+
+    var checkDead = setInterval(function(){
+      var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+      var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+      var block2Left = parseInt(window.getComputedStyle(block2).getPropertyValue("left"));
+
+      if(blockLeft<90 && blockLeft>20 && characterTop>=310 || block2Left<90 && block2Left>20 && characterTop>=310){
+        isRunning = false;
+        isgameOver = true;
+        character.classList.remove("animate");
+        gameOver.style.visibility = "visible";
+        gameOver3d.style.visibility = "visible";
+        grass.style.animationDuration = "0s";
+        grass2.style.animationDuration = "0s";
+        block.style.visibility = "hidden";
+        block2.style.visibility = "hidden";
+        block.style.animation = "none";
+        block2.style.animation = "none";
+        //HIGHSCORE NACHRICHT
+        switch(true){
+          case (localStorage.getItem("highscoreText") == null):
+            localStorage.setItem('highscoreText', 0);
+            break;
+          case (localStorage.getItem("highscoreText") < counter):
+            localStorage.setItem('highscoreText', counter);
+            break;
+        }
+        Textscore.innerHTML = "Score: "+counter;
+        highscoreText.innerHTML = "Highscore: "+localStorage.getItem("highscoreText");
+        characterPic.src = "bilder/giraffe.png";
+      }
+    },20);
+  </script>
+</html>
