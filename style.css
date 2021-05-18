@@ -37,6 +37,40 @@ body{
     border: 3px solid black;
     overflow: hidden;
 }
+#levelDivHolder{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#levelDiv{
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+#levelText{
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+#levelBar{
+    border-radius: 40px; 
+    width: 100%;
+    height: 20px;
+}
+progress::-webkit-progress-bar {
+    background-color: white;
+    border: 3px solid black;
+}
+progress::-webkit-progress-value {
+    background-color: lightgreen;
+    border-right: 3px solid black;
+  }
 #gameOver{
     position: fixed;
     width: 300px;
@@ -55,8 +89,8 @@ body{
     height: 200px;
     border: 3px solid black;
     background-color: #FED766;
-    margin-left: 40px;
-    margin-top: 40px;
+    margin-left: 30px;
+    margin-top: 30px;
     z-index: 1;
 }
 #gameoverText{

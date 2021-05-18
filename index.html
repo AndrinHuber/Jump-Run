@@ -7,10 +7,16 @@
     <title>Game</title>
   </head> 
   <body>
+    <div id="levelDivHolder">
+      <div id="levelDiv">
+        <div id="levelText">Level: 0</div>
+        <progress id="levelBar" value="32" max="100"> 32% </progress>
+      </div>  
+    </div>
     <div id="gameholder">
-      <div id="game" onclick="start(); ">
+      <div id="game" onclick="gameDivclick(); ">
         <p id="counter">0</p>
-        <p id="starttext">Um das Spiel zu starten Drücke:<br> [Klick] / [Leertaste] / [KeyUP]</p>
+        <p id="starttext">Um das Spiel zu starten Drücke:<br> [Klick] | [Leertaste] | [KeyUP]</p>
         <div id="character"><img id="characterPic" src="bilder/giraffe.png"></div>
         <div id="block1"><img id="enemy1Pic" src="bilder/Hund.png"></div>
         <div id="block2"><img id="enemy2Pic" src="bilder/Tintenfisch.png"></div> 
@@ -67,7 +73,7 @@
     });
 
     function checkifBanned(){
-      if(localStorage.getItem('penaltyText') >= 2){
+      if(localStorage.getItem('penalty') >= 2){
         while(0 == 0) {
           alert("Du Kannst dieses Spiel NICHT MEHR SPIELEN, weil du betrügen wolltest!");
         }
@@ -77,15 +83,15 @@
     function changeMessage(){
       localStorage.setItem('highscoreText', 0);
 
-      if(localStorage.getItem('penaltyText') == null || localStorage.getItem('penaltyText') == ""){
-        localStorage.setItem('penaltyText', 0);
+      if(localStorage.getItem('penalty') == null || localStorage.getItem('penalty') == ""){
+        localStorage.setItem('penalty', 0);
       }
-      if(localStorage.getItem('penaltyText') == 0){
-        localStorage.setItem('penaltyText', 1);
-        alert("Bitte verändere den LocalStorage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird dir beim nächsten mal ALLES Zurückgesetzt und du kannst das Spiel NICHT mehr spielen! :)");
+      if(localStorage.getItem('penalty') == 0){
+        localStorage.setItem('penalty', 1);
+        alert("Bitte verändere den Local Storage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird dir beim nächsten mal ALLES Zurückgesetzt und du kannst das Spiel NICHT mehr spielen! :)");
       }else{
-        localStorage.setItem('penaltyText', 2);
-        alert("Bitte verändere den LocalStorage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird jetzt alles Zurückgesetzt und das spielen UNMÖGLICH gemacht! :)");
+        localStorage.setItem('penalty', 2);
+        alert("Bitte verändere den Local Storage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird jetzt alles Zurückgesetzt und das spielen UNMÖGLICH gemacht! :)");
         checkifBanned();
       }
     }
@@ -94,14 +100,7 @@
       switch(isgameOver){
         case false:
           if(e.keyCode == 32 || e.keyCode == 38){
-            switch(true){
-              case (character.classList != "animate" && character.classList != "animate2"):
-                jump();
-                break;
-              case (character.classList == "animate"):
-                doublejump();
-                break;
-            }
+            jumpfunction();
           }
           break;
         case true:
@@ -109,6 +108,17 @@
             closeGameover();
           }
           break; 
+      }
+    }
+
+    function jumpfunction(){
+      switch(true){
+        case (character.classList != "animate" && character.classList != "animate2"):
+          jump();
+          break;
+        case (character.classList == "animate"):
+          doublejump();
+          break;
       }
     }
 
@@ -198,6 +208,15 @@
       blockType.style.animationTimingFunction = "linear";
     }
 
+    function gameDivclick(){
+      if(isRunning == true && isgameOver == false){
+        jumpfunction()
+      }
+      if(isRunning == false && isgameOver == false){
+        start();
+      }
+    }
+
     function start(){
       if(isRunning == false && isgameOver == false){
         isRunning = true;
@@ -205,7 +224,6 @@
         grass2.style.animationDuration = "2.5s";
         gameoverbutton.style.transition = ".1s";
         startText.style.visibility = "hidden";
-        gameDiv.style.cursor = "default";
         velocity = 3;
         block.style.visibility = "visible";
         block2.style.visibility = "visible";
@@ -239,6 +257,7 @@
         isRunning = false;
         isgameOver = true;
         character.classList.remove("animate");
+        gameDiv.style.cursor = "default";
         gameOver.style.visibility = "visible";
         gameOver3d.style.visibility = "visible";
         grass.style.animationDuration = "0s";
@@ -250,18 +269,19 @@
         //HIGHSCORE NACHRICHT
         var highscore = localStorage.getItem("highscoreText");
         switch(true){
-          case (highscore == null  || highscore == ""):
+          case (highscore == null  || highscore == "" || isNaN(highscore)):
             localStorage.setItem('highscoreText', 0);
-            break;
-          case (isNaN(highscore)):
-            changeMessage();
             break;
           case (highscore < counter):
             localStorage.setItem('highscoreText', counter);
+            Textscore.innerHTML = "Score: "+counter;
+            highscoreText.innerHTML = "*NEUER* Highscore: "+localStorage.getItem("highscoreText");
+            break;
+          case (highscore >= counter):
+            Textscore.innerHTML = "Score: "+counter;
+            highscoreText.innerHTML = "Highscore: "+localStorage.getItem("highscoreText");
             break;
         }
-        Textscore.innerHTML = "Score: "+counter;
-        highscoreText.innerHTML = "Highscore: "+localStorage.getItem("highscoreText");
         characterPic.src = "bilder/giraffe.png";
       }
     },20);
