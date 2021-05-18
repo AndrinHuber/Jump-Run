@@ -69,6 +69,7 @@ body{
     font-size: 20px;
 }
 #gameoverbutton{
+    outline: none;
     margin-right: 15px;
     transition: .1s;
     color:black;
