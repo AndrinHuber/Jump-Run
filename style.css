@@ -61,7 +61,7 @@ body{
 #levelBar{
     border-radius: 40px; 
     width: 100%;
-    height: 20px;
+    height: 30px;
 }
 progress::-webkit-progress-bar {
     background-color: white;
@@ -145,7 +145,7 @@ progress::-webkit-progress-value {
     height: 100px;
 }
 .animate{
-    animation: jump .8s;
+    animation: jump .7s;
 }
 @keyframes jump{
     0%{top: 350px;}
@@ -154,7 +154,7 @@ progress::-webkit-progress-value {
     100%{top: 350px;}
 }
 .animate2{
-    animation: doublejump .6s;
+    animation: doublejump .7s;
 }
 @keyframes doublejump{
     0%{top: 280px;}
@@ -193,9 +193,9 @@ progress::-webkit-progress-value {
     100%{left: 0px;}
 }
 #counter{
-    font-size: 30px;
+    font-size: 50px;
     position: fixed;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 #starttext{
     visibility: visible;

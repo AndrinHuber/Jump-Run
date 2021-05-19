@@ -29,6 +29,7 @@ grass.style.animationDuration = "0s";
 grass2.style.animationDuration = "0s";
 gameOver.style.visibility = "hidden";
 gameOver3d.style.visibility = "hidden";
+console.log("Hallo ich bin eine Konsole :)\nSchön hast du mich gefunden hast. In der Konsole siehst du Fehlermeldungen vom Spiel.\nGeht etwas im Spiel nicht? Brauchst du Hilfe? Dann kannst du hier die entsprechenden Informationen sehen!");
 checkifBanned();
 
 window.addEventListener('storage', function(e) {
@@ -79,27 +80,28 @@ function jumpfunction(){
     case (character.classList != "animate" && character.classList != "animate2"):
       jump();
       break;
-    case (character.classList == "animate"):
+    case (character.classList == "animate" && character.classList != "animate2"):
       doublejump();
       break;
   }
 }
 
 function jump(){
-  if(character.classList != "animate"){
-    if(isRunning == false && isgameOver == false){ start(); }
-    character.classList.add("animate");
-    setTimeout(function(){
+  if(isRunning == false && isgameOver == false){ start(); }
+  character.classList.add("animate");
+  setTimeout(function(){
+    if(character.classList == "animate"){
       character.classList.remove("animate");
-    },800);
-  }
+    }  
+  },700); 
 }
 
 function doublejump(){
+  character.classList.remove("animate");
   character.classList.add("animate2");
   setTimeout(function(){
     character.classList.remove("animate2");
-  },600);
+  },700);
 }
 
 var startAnimations = setInterval(function(){
