@@ -14,12 +14,34 @@ var Texthighscore = document.getElementById("highscoreText");
 var gameOver = document.getElementById("gameOver");
 var gameOver3d = document.getElementById("gameOver3d");
 var gameoverbutton = document.getElementById("gameoverbutton");
+var levelBar = document.getElementById("levelBar");
+var levelText = document.getElementById("levelText");
+var percentagetext = document.getElementById("percentagetext");
 var counter = 0;
 var velocity = 3;
 var speed = 0.01;
 var isRunning = new Boolean(false);
 var isgameOver = false;
 
+if(localStorage.getItem('levelBarMAX') == null || localStorage.getItem('levelBarMAX') == ""){
+  localStorage.setItem('levelBarMAX', 10);
+  levelBar.max = 10;
+}
+if(localStorage.getItem('level') == null || localStorage.getItem('level') == ""){
+  localStorage.setItem('level', 0);
+  levelText.innerHTML = "Level: " + localStorage.getItem('level');
+}
+if(localStorage.getItem('valueStorage') == null || localStorage.getItem('valueStorage') == ""){
+  localStorage.setItem('valueStorage', 0);
+}
+if(localStorage.getItem('highscore') == null || localStorage.getItem('highscore') == ""){
+  localStorage.setItem('highscore', 0);
+} 
+
+levelText.innerHTML = "Level: " + localStorage.getItem('level');
+levelbarMax = localStorage.getItem('levelBarMAX');
+percentagetext.innerHTML = localStorage.getItem('valueStorage') + " / " + levelbarMax;
+levelBar.value = localStorage.getItem('valueStorage');
 block.style.animation = "none";
 block2.style.animation = "none";
 block.style.visibility = "hidden";
@@ -30,10 +52,10 @@ grass2.style.animationDuration = "0s";
 gameOver.style.visibility = "hidden";
 gameOver3d.style.visibility = "hidden";
 console.log("Hallo ich bin eine Konsole :)\nSchön hast du mich gefunden hast. In der Konsole siehst du Fehlermeldungen vom Spiel.\nGeht etwas im Spiel nicht? Brauchst du Hilfe? Dann kannst du hier die entsprechenden Informationen sehen!");
-checkifBanned();
+//checkifBanned();
 
 window.addEventListener('storage', function(e) {
-  changeMessage();
+  //changeMessage();
 });
 
 function checkifBanned(){
@@ -43,9 +65,9 @@ function checkifBanned(){
     }
   }
 }
-
+/*
 function changeMessage(){
-  localStorage.setItem('highscoreText', 0);
+  localStorage.setItem('highscore', 0);
 
   if(localStorage.getItem('penalty') == null || localStorage.getItem('penalty') == ""){
     localStorage.setItem('penalty', 0);
@@ -59,7 +81,7 @@ function changeMessage(){
     checkifBanned();
   }
 }
-
+*/
 document.body.onkeydown = function(e){
   switch(isgameOver){
     case false:
@@ -232,21 +254,54 @@ var checkDead = setInterval(function(){
     block.style.animation = "none";
     block2.style.animation = "none";
     //HIGHSCORE NACHRICHT
-    var highscore = localStorage.getItem("highscoreText");
+    var highscore = localStorage.getItem("highscore");
     switch(true){
-      case (highscore == null  || highscore == "" || isNaN(highscore)):
-        localStorage.setItem('highscoreText', 0);
-        break;
       case (highscore < counter):
-        localStorage.setItem('highscoreText', counter);
+        localStorage.setItem('highscore', counter);
         Textscore.innerHTML = "Score: "+counter;
-        highscoreText.innerHTML = "*NEUER* Highscore: "+localStorage.getItem("highscoreText");
+        Texthighscore.innerHTML = "*NEUER* Highscore: "+localStorage.getItem("highscore");
         break;
       case (highscore >= counter):
         Textscore.innerHTML = "Score: "+counter;
-        highscoreText.innerHTML = "Highscore: "+localStorage.getItem("highscoreText");
+        Texthighscore.innerHTML = "Highscore: "+localStorage.getItem("highscore");
         break;
     }
+    newValue = +localStorage.getItem('valueStorage') + +counter;
+    localStorage.setItem('valueStorage', newValue);
+    switch(true){
+      case localStorage.getItem('valueStorage') == levelBar.max:
+        localStorage.setItem('valueStorage', 0);
+        newValue = 0;
+        momLevel = +localStorage.getItem('level') + +1;
+        localStorage.setItem('level', momLevel);
+        momMAX = localStorage.getItem('levelBarMAX') * 1.25;
+        localStorage.setItem('levelBarMAX', momMAX);
+        levelBar.max = momMAX;
+        break;
+      case localStorage.getItem('valueStorage') > levelBar.max:
+        overlapingValue = localStorage.getItem('valueStorage') - levelBar.max;
+        localStorage.setItem('valueStorage', overlapingValue);
+        newValue = overlapingValue;
+        momLevel = +localStorage.getItem('level') + +1;
+        localStorage.setItem('level', momLevel);
+        momMAX = localStorage.getItem('levelBarMAX') * 1.25;
+        localStorage.setItem('levelBarMAX', momMAX);
+        levelBar.max = momMAX;
+        break;
+    }
+    while(localStorage.getItem('valueStorage') > levelBar.max){
+      overlapingValue = localStorage.getItem('valueStorage') - levelBar.max;
+      localStorage.setItem('valueStorage', overlapingValue);
+      newValue = overlapingValue;
+      momLevel = +localStorage.getItem('level') + +1;
+      localStorage.setItem('level', momLevel);
+      momMAX = localStorage.getItem('levelBarMAX') * 1.25;
+      localStorage.setItem('levelBarMAX', momMAX);
+      levelBar.max = momMAX;
+    }
+    levelText.innerHTML = "Level: " + localStorage.getItem('level');
+    levelBar.value = newValue;
+    percentagetext.innerHTML = levelBar.value + " / " + localStorage.getItem('levelBarMAX');
     characterPic.src = "bilder/giraffe.png";
   }
 },20);
