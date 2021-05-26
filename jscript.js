@@ -17,7 +17,6 @@ var gameoverbutton = document.getElementById("gameoverbutton");
 var levelBar = document.getElementById("levelBar");
 var levelText = document.getElementById("levelText");
 var percentagetext = document.getElementById("percentagetext");
-var levelTextGameOver = document.getElementById("levelTextGameOver");
 var counter = 0;
 var velocity = 3;
 var speed = 0.01;
@@ -218,7 +217,8 @@ function start(){
     block2.style.visibility = "visible";
     setAnimationNew(block);
     setAnimationNew(block2);
-    block.style.animationDuration = velocity + "s";
+    randomduration = (Math.floor(Math.random() * 2)+2) + "s";
+    block.style.animationDuration = randomduration;
     block2.style.animationDuration = velocity + "s";
   }
 }
@@ -271,12 +271,10 @@ var checkDead = setInterval(function(){
       case (highscore < counter):
         localStorage.setItem('highscore', counter);
         Textscore.innerHTML = "Score: "+counter;
-        levelTextGameOver.innerHTML = "Level: " + localStorage.getItem('level');
         Texthighscore.innerHTML = "*NEUER* Highscore: "+localStorage.getItem("highscore");
         break;
       case (highscore >= counter):
         Textscore.innerHTML = "Score: "+counter;
-        levelTextGameOver.innerHTML = "Level: " + localStorage.getItem('level');
         Texthighscore.innerHTML = "Highscore: "+localStorage.getItem("highscore");
         break;
     }

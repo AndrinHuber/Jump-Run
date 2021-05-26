@@ -26,6 +26,9 @@ body{
     background-color: lightskyblue;
     z-index: 1;
 }
+#game:active {
+    -webkit-tap-highlight-color: transparent;
+}
 #game3d{
     position: fixed;
     background-color: #FED766;
@@ -45,7 +48,8 @@ body{
     justify-content: center;
 }
 #levelDiv{
-    width: 300px;
+    overflow: hidden;
+    width: 450px;
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -97,7 +101,7 @@ progress::-webkit-progress-value {
 #gameOver3d{
     position: fixed;
     width: 300px;
-    height: 200px;
+    height: 193px;
     border: 3px solid black;
     background-color: #FED766;
     margin-left: 30px;
@@ -138,7 +142,7 @@ progress::-webkit-progress-value {
     cursor: pointer;
 }
 #gameoverbutton3d{
-    margin-top: 153px;
+    margin-top: 148px;
     position: fixed;
     width: 74px;
     height: 29px;
