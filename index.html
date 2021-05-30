@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monster-jumper</title>
     <script language="javascript" type="text/javascript" src="/jscript.js" async></script>
     <link rel="stylesheet" href="style.css">
-  </head> 
-  <body>  
+</head>
+
+<body>
     <div id="levelDivHolder">
-      <div id="levelDiv">
-        <div id="levelText">Level: 0</div>
-        <div id="progressbarholder">
-          <div id="percentagetext"></div>
-          <progress id="levelBar" value="0"> 32% </progress>
-          <div id="levelbar3d"></div>
+        <div id="levelDiv">
+            <div id="levelText">Level: 0</div>
+            <div id="progressbarholder">
+                <div id="percentagetext"></div>
+                <progress id="levelBar" value="0"></progress>
+                <div id="levelbar3d"></div>
+            </div>
         </div>
-      </div>  
     </div>
     <div id="gameholder">
-      <div id="game" onclick="gameDivclick(); ">
-        <p id="counter">0</p>
-        <p id="starttext">Um das Spiel zu starten Drücke:<br> [Klick] | [Leertaste] | [KeyUP]</p>
-        <div id="character"><img id="characterPic" src="bilder/giraffe.png"></div>
-        <div id="block1"><img id="enemy1Pic" src="bilder/Hund.png"></div>
-        <div id="block2"><img id="enemy2Pic" src="bilder/Tintenfisch.png"></div> 
-        <img id="grass" src="bilder/grass.png">
-        <img id="grass2" src="bilder/grass.png">
-      </div>
-      <div id="game3d"></div>
-      <div id="gameOver">
-        <div id="gameoverText">GAME OVER</div>
-        <div id="scoreText">Score: </div>
-        <div id="highscoreText">Highscore: </div>
-        <button id="gameoverbutton" onclick="closeGameover();">Play</button>
-        <div id="gameoverbutton3d"></div>
-      </div>
-      <div id="gameOver3d"></div>
+        <div id="incompatibleDevice">
+            <div id="incDevText">Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]</div>
+        </div>
+        <div id="cloudholder" onclick="gameDivclick();">
+            <img id="cloud1" src="pictures/wolke-1.png">
+            <img id="cloud2" src="pictures/wolke-1.png">
+            <img id="cloud3" src="pictures/wolke-1.png">
+            <img id="cloud4" src="pictures/wolke-1.png">
+        </div>
+        <div id="game">
+            <p id="counter">0</p>
+            <p id="starttext">Um das Spiel zu starten Drücke:<br> [Klick] | [Leertaste] | [KeyUP]</p>
+            <div id="character"><img id="characterPic" src="pictures/giraffe.png"></div>
+            <div id="block1"><img id="enemy1Pic" src="pictures/Hund.png"></div>
+            <div id="block2"><img id="enemy2Pic" src="pictures/Tintenfisch.png"></div>
+            <img id="grass" src="pictures/grass.png">
+            <img id="grass2" src="pictures/grass.png">
+        </div>
+        <div id="game3d"></div>
+        <div id="gameOver">
+            <div id="gameoverText">GAME OVER</div>
+            <div id="scoreText">Score: </div>
+            <div id="highscoreText">Highscore: </div>
+            <button id="gameoverbutton" onclick="closeGameover();">Play</button>
+            <div id="gameoverbutton3d"></div>
+        </div>
+        <div id="gameOver3d"></div>
     </div>
-  </body>
+</body>
+
 </html>

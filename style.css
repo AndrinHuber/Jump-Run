@@ -2,6 +2,9 @@
     padding: 0;
     margin: 0;
 }
+::selection {
+    background: transparent
+}
 body{
     width: 100%;
     height: 100%;
@@ -17,6 +20,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#cloudholder{
+    overflow: hidden;
+    z-index: 2;
+    position: fixed;
+    width: 1000px;
+    height: 500px;
 }
 #game{
     width: 1000px;
@@ -85,7 +95,7 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
     background-color: lightgreen;
     border-right: 3px solid black;
-  }
+}
 #gameOver{
     position: fixed;
     width: 300px;
@@ -210,6 +220,47 @@ progress::-webkit-progress-value {
     0%{left: 1000px;}
     100%{left: 0px;}
 }
+@keyframes cloud{
+    0%{margin-left: 1050px;}
+    100%{margin-left: -100px;}
+}
+@keyframes cloud2{
+    0%{margin-left: 1500px;}
+    100%{margin-left: -100px;}
+}
+@keyframes cloud3{
+    0%{margin-left: 1900px;}
+    100%{margin-left: -100px;}
+}
+
+#cloud1{
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    margin-top: 20px;
+    animation: cloud 40s infinite linear;
+}
+#cloud2{
+    position: absolute;
+    height: 40px;
+    width: 80px;
+    margin-top: 100px;
+    animation: cloud 100s infinite linear;
+}
+#cloud3{
+    position: absolute;
+    height: 20px;
+    width: 40px;
+    margin-top: 160px;
+    animation: cloud2 80s infinite linear;
+}
+#cloud4{
+    position: absolute;
+    height: 10px;
+    width: 20px;
+    margin-top: 200px;
+    animation: cloud3 60s infinite linear;
+}
 #counter{
     font-size: 50px;
     position: fixed;
@@ -219,6 +270,7 @@ progress::-webkit-progress-value {
     visibility: visible;
     position: fixed;
     font-size: 20px;
+    text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -238,4 +290,74 @@ progress::-webkit-progress-value {
     top: 217px;
     left:1000px;
     animation: grass2 2.5s infinite linear;
+}
+#incompatibleDevice{
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#incDevText{
+    color:black;
+    width: 60%;
+    text-align: center;
+}
+
+@media only screen and (max-width: 420px) {
+    #levelDiv{
+        overflow: hidden;
+        width: 250px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+    }
+    #levelText{
+        color: black;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    #progressbarholder{
+        width: 200px;
+    }
+    #levelBar{
+        border-radius: 40px; 
+        width: 100%;
+        height: 30px;
+    }
+    #levelbar3d{
+        margin-top: -20px;
+        margin-left: 8px;
+        width: 98%;
+        height: 20px;
+        border: 3px solid black;
+        background-color: #FED766;
+    }
+}
+@media only screen and (max-height: 750px) {
+    #game{
+        margin-top:100px;
+    }
+    #cloudholder{
+        margin-top:100px;
+    }
+    #game3d{
+        margin-top:140px;
+    }
+    #starttext{
+        margin-top: 40px;
+    }
+}
+@media only screen and (max-height: 650px) {
+    #incompatibleDevice{
+        visibility: visible;
+    }
 }
