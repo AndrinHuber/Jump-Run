@@ -338,7 +338,6 @@ progress::-webkit-progress-value {
     width: 70px;
     height: 70px;
     outline: none;
-    transition: .1s;
     border-radius: 100%;
 }
 .buttons:hover{
@@ -346,13 +345,31 @@ progress::-webkit-progress-value {
 }
 .buttons:active{
     background-color: #5cd65c;
-    transform: scale(1.2);
 }
 .buttonicons{
     transform: scale(1.5);
 }
-
-@media only screen and (max-width: 500px) {
+#hometab{
+    visibility: hidden;
+    position: fixed;
+    width: 1000px;
+    height: 500px;
+    border: 3px solid black;
+    overflow: hidden;
+    background-color: lightslategray;
+    z-index: 9;
+}
+#settingstab{
+    visibility: hidden;
+    position: fixed;
+    width: 1000px;
+    height: 500px;
+    border: 3px solid black;
+    overflow: hidden;
+    background-color: red;
+    z-index: 9;
+}
+@media only screen and (max-width: 550px) {
     #levelDiv{
         overflow: hidden;
         width: 250px;
@@ -403,6 +420,12 @@ progress::-webkit-progress-value {
     }
 }
 @media only screen and (max-height: 750px) {
+    #hometab{
+        margin-top:100px;
+    }
+    #settingstab{
+        margin-top:100px;
+    }
     #game{
         margin-top:100px;
     }

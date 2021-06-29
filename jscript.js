@@ -18,6 +18,10 @@ var levelBar = document.getElementById("levelBar");
 var levelText = document.getElementById("levelText");
 var percentagetext = document.getElementById("percentagetext");
 var cloudholder = document.getElementById("cloudholder");
+var settingbutton = document.getElementById("settingbutton");
+var homebutton = document.getElementById("homebutton");
+var hometab = document.getElementById("hometab");
+var settingstab = document.getElementById("settingstab");
 var levelcounter = 0;
 var counter = 0;
 var velocity = 3;
@@ -45,6 +49,8 @@ levelbarMax = localStorage.getItem('levelBarMAX');
 levelBar.max = levelbarMax;
 percentagetext.innerHTML = localStorage.getItem('valueStorage') + " / " + levelbarMax;
 levelBar.value = localStorage.getItem('valueStorage');
+settingstab.style.visibility = "hidden";
+hometab.style.visibility = "hidden";
 block.style.animation = "none";
 block2.style.animation = "none";
 block.style.visibility = "hidden";
@@ -203,6 +209,24 @@ function gameDivclick() {
     }
     if (isRunning == false && isgameOver == false) {
         start();
+    }
+}
+
+function settingsClick() {
+    if(settingstab.style.visibility == "hidden"){
+        hometab.style.visibility = "hidden";
+        settingstab.style.visibility = "visible";
+    }else{
+        settingstab.style.visibility = "hidden";
+    }
+}
+
+function homeClick() {
+    if(hometab.style.visibility == "hidden"){
+        settingstab.style.visibility = "hidden"
+        hometab.style.visibility = "visible";
+    }else{
+        hometab.style.visibility = "hidden";
     }
 }
 

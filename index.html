@@ -12,8 +12,8 @@
 <body>
     <div id="buttonholder">
         <div id="buttondiv">
-            <button class="buttons" id="settingbutton"><i class="material-icons buttonicons">settings</i></button>
-            <button class="buttons" id="homebutton"><i class="material-icons buttonicons">home</i></button>
+            <button class="buttons" id="settingbutton" onclick="settingsClick();"><i class="material-icons buttonicons">settings</i></button>
+            <button class="buttons" id="homebutton" onclick="homeClick();"><i class="material-icons buttonicons">home</i></button>
         </div>
     </div>
     <div id="levelDivHolder">
@@ -29,6 +29,12 @@
     <div id="gameholder">
         <div id="incompatibleDevice">
             <div id="incDevText">Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]</div>
+        </div>
+        <div id="hometab">
+
+        </div>
+        <div id="settingstab">
+            
         </div>
         <div id="cloudholder" onclick="gameDivclick();">
             <img id="cloud1" src="pictures/wolke-1.png">
