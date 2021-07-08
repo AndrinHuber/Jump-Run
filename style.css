@@ -5,10 +5,25 @@
 ::selection {
     background: transparent
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+    background: black; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: darkslategrey; 
+}
+#favicon{
+    width: 20px;
+}
 body{
     width: 100%;
     height: 100%;
-    font-family: monospace;
+    font-family: 'NewTieng', sans-serif;
     font-weight: bold;
     color:white;
     background-color: lightpink;
@@ -28,6 +43,9 @@ body{
     width: 1000px;
     height: 500px;
 }
+#cloudholder:active{
+    -webkit-tap-highlight-color: transparent;
+}
 #game{
     width: 1000px;
     height: 500px;
@@ -35,9 +53,6 @@ body{
     overflow: hidden;
     background-color: lightskyblue;
     z-index: 1;
-}
-#game:active {
-    -webkit-tap-highlight-color: transparent;
 }
 #game3d{
     position: fixed;
@@ -136,7 +151,7 @@ progress::-webkit-progress-value {
     transition: .1s;
     color:black;
     font-weight: bold;
-    font-family: monospace;
+    font-family: 'NewTieng', sans-serif;
     font-size: 20px;
     width: 80px;
     height: 35px;
@@ -252,14 +267,14 @@ progress::-webkit-progress-value {
     height: 20px;
     width: 40px;
     margin-top: 160px;
-    animation: cloud2 80s infinite linear;
+    animation: cloud2 180s infinite linear;
 }
 #cloud4{
     position: absolute;
     height: 10px;
     width: 20px;
     margin-top: 200px;
-    animation: cloud3 60s infinite linear;
+    animation: cloud3 230s infinite linear;
 }
 #counter{
     font-size: 50px;
@@ -352,22 +367,148 @@ progress::-webkit-progress-value {
 #hometab{
     visibility: hidden;
     position: fixed;
-    width: 1000px;
-    height: 500px;
+    width: 700px;
+    height: 350px;
     border: 3px solid black;
-    overflow: hidden;
-    background-color: lightslategray;
+    overflow: auto;
+    background-color: #E0DFD5;
     z-index: 9;
+}
+#hometab3d{
+    position: fixed;
+    background-color: #FED766;
+    z-index: 8;
+    width: 700px;
+    height: 350px;
+    margin-left: 30px;
+    margin-top: 30px;
+    border: 3px solid black;
 }
 #settingstab{
     visibility: hidden;
     position: fixed;
-    width: 1000px;
-    height: 500px;
+    width: 700px;
+    height: 350px;
     border: 3px solid black;
-    overflow: hidden;
-    background-color: red;
+    background-color: #E0DFD5;
     z-index: 9;
+    overflow: auto;
+}
+#settingstabflex{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#settingstab3d{
+    position: fixed;
+    background-color: #FED766;
+    z-index: 8;
+    width: 700px;
+    height: 350px;
+    margin-left: 30px;
+    margin-top: 30px;
+    border: 3px solid black;
+}
+.einstellungsdiv{
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#skintabtabflex{
+    position: absolute;
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.divwrapper{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.lockedDiv{
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    opacity: 40%;
+    margin-top: -106px;
+    border: 3px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.levelactivation{
+    margin-top: 10px;
+}
+.lockskinicon{
+    transform: scale(2);
+}
+.skindiv{
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: whitesmoke;
+    border: 3px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.skindiv:hover{
+    border: 3px solid black;
+    background-color: lightgray;
+    cursor: pointer;
+    animation: skin .1s linear;
+}
+@keyframes skin{
+    0%{transform: scale(1.0);}
+    50%{transform: scale(1.2);}
+    100%{transform: scale(1.0);}
+}
+.buttonDiv{
+    position: fixed;
+    z-index: 9999999;
+    background-color: #E0DFD5;
+    font-size: 50px;
+    width: 700px;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -3px;
+    margin-left: -3px;
+}
+.buttonDivbutton{
+    position: absolute;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    color: black;
+}
+.buttonDivbutton:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}
+.buttonDivtext{
+    color: black;
+}
+.skinPic{
+    width: 35px;
+    height: 90px;
 }
 @media only screen and (max-width: 550px) {
     #levelDiv{
@@ -419,12 +560,37 @@ progress::-webkit-progress-value {
         align-items: center;
     }
 }
+@media only screen and (max-width: 1000px) {
+    #hometab{
+        width: 100%;
+    }
+    #hometab3d{
+        width: 0px;
+        height: 0px;
+    }
+    #settingstab{
+        width: 100%;
+    }
+    #settingstab3d{
+        width: 0px;
+        height: 0px;
+    }
+    .buttonDiv{
+        width: 100%;
+    }
+}
 @media only screen and (max-height: 750px) {
     #hometab{
         margin-top:100px;
     }
+    #hometab3d{
+        margin-top: 130px;
+    }
     #settingstab{
         margin-top:100px;
+    }
+    #settingstab3d{
+        margin-top: 130px;
     }
     #game{
         margin-top:100px;
@@ -437,6 +603,12 @@ progress::-webkit-progress-value {
     }
     #starttext{
         margin-top: 40px;
+    }
+    #gameOver{
+        margin-top: 100px;
+    }
+    #gameOver3d{
+        margin-top: 135px;
     }
 }
 @media only screen and (max-height: 650px) {

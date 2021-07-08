@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monster-jumper</title>
     <link rel="stylesheet" href="style.css">
+    <link sizes="180x180" rel="shortcut icon" type="image/png" href="pictures/giraffe-favicon.png" />
+    <link href="http://fonts.cdnfonts.com/css/newtieng" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -13,7 +15,7 @@
     <div id="buttonholder">
         <div id="buttondiv">
             <button class="buttons" id="settingbutton" onclick="settingsClick();"><i class="material-icons buttonicons">settings</i></button>
-            <button class="buttons" id="homebutton" onclick="homeClick();"><i class="material-icons buttonicons">home</i></button>
+            <button class="buttons" id="homebutton" onclick="homeClick();"><i class="material-icons buttonicons">face</i></button>
         </div>
     </div>
     <div id="levelDivHolder">
@@ -31,11 +33,72 @@
             <div id="incDevText">Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]</div>
         </div>
         <div id="hometab">
-
+            <div class="buttonDiv"><div class="buttonDivtext">Skins</div><div class="buttonDivbutton" onclick="homeClick()"><i class="material-icons buttonicons">clear</i></div></div>
+            <div id="skintabtabflex">
+                <div class="divwrapper">
+                    <div class="skindiv" onclick="setSkin('giraffe')"><img class="skinPic" src="pictures/giraffe.png"></div>
+                    <div id="skinGiraffelocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation" id="giraffeleveltext">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv" onclick="setSkin('pinguin')"><img class="skinPic" src="pictures/pinguin.png"></div>
+                    <div id="skinPinguinlocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation" id="pinguinleveltext">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+                <div class="divwrapper">
+                    <div class="skindiv"></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                </div>
+            </div>
         </div>
+        <div id="hometab3d"></div>
         <div id="settingstab">
-            
+            <div class="buttonDiv"><div class="buttonDivtext">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
+            <div id="settingstabflex">
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+                <div class="einstellungsdiv"></div>
+            </div>
         </div>
+        <div id="settingstab3d"></div>
         <div id="cloudholder" onclick="gameDivclick();">
             <img id="cloud1" src="pictures/wolke-1.png">
             <img id="cloud2" src="pictures/wolke-1.png">
@@ -45,7 +108,7 @@
         <div id="game">
             <p id="counter">0</p>
             <p id="starttext">Um das Spiel zu starten Drücke:<br> [Klick] | [Leertaste] | [KeyUP]</p>
-            <div id="character"><img id="characterPic" src="pictures/giraffe.png"></div>
+            <div id="character"><img id="characterPic"></div>
             <div id="block1"><img id="enemy1Pic" src="pictures/Hund.png"></div>
             <div id="block2"><img id="enemy2Pic" src="pictures/Tintenfisch.png"></div>
             <img id="grass" src="pictures/grass.png">

@@ -21,7 +21,14 @@ var cloudholder = document.getElementById("cloudholder");
 var settingbutton = document.getElementById("settingbutton");
 var homebutton = document.getElementById("homebutton");
 var hometab = document.getElementById("hometab");
+var hometab3d = document.getElementById("hometab3d");
 var settingstab = document.getElementById("settingstab");
+var settingstab3d = document.getElementById("settingstab3d");
+var skinGiraffelocked = document.getElementById("skinGiraffelocked");
+var skinPinguinlocked = document.getElementById("skinPinguinlocked");
+var lockedDiv = document.getElementsByClassName("lockedDiv");
+var giraffeleveltext = document.getElementById("giraffeleveltext");
+var pinguinleveltext = document.getElementById("pinguinleveltext");
 var levelcounter = 0;
 var counter = 0;
 var velocity = 3;
@@ -43,6 +50,9 @@ if (localStorage.getItem('valueStorage') == null || localStorage.getItem('valueS
 if (localStorage.getItem('highscore') == null || localStorage.getItem('highscore') == "") {
     localStorage.setItem('highscore', 0);
 }
+if (localStorage.getItem('skin') == null || localStorage.getItem('skin') == "") {
+    localStorage.setItem('skin', 'noskin');
+}
 
 levelText.innerHTML = "Level: " + localStorage.getItem('level');
 levelbarMax = localStorage.getItem('levelBarMAX');
@@ -50,7 +60,9 @@ levelBar.max = levelbarMax;
 percentagetext.innerHTML = localStorage.getItem('valueStorage') + " / " + levelbarMax;
 levelBar.value = localStorage.getItem('valueStorage');
 settingstab.style.visibility = "hidden";
+settingstab3d.style.visibility = "hidden";
 hometab.style.visibility = "hidden";
+hometab3d.style.visibility = "hidden";
 block.style.animation = "none";
 block2.style.animation = "none";
 block.style.visibility = "hidden";
@@ -60,8 +72,19 @@ grass.style.animationDuration = "0s";
 grass2.style.animationDuration = "0s";
 gameOver.style.visibility = "hidden";
 gameOver3d.style.visibility = "hidden";
+var giraffelevel = 5;
+var pinguinlevel = 2;
+pinguinleveltext.innerHTML = "Level: " + pinguinlevel;
+giraffeleveltext.innerHTML = "Level: " + giraffelevel;
 console.log("Hallo ich bin eine Konsole :)\nSchön hast du mich gefunden hast. In der Konsole siehst du Fehlermeldungen vom Spiel.\nGeht etwas im Spiel nicht? Brauchst du Hilfe? Dann kannst du hier die entsprechenden Informationen sehen!");
+checkSkin();
+checkStatusSkins();
 //checkifBanned();
+
+function checkStatusSkins(){
+    checkifLocked('giraffe');
+    checkifLocked('pinguin');
+}
 
 window.addEventListener('storage', function (e) {
     //changeMessage();
@@ -135,16 +158,24 @@ function doublejump() {
     }, 700);
 }
 
+function checkSkin(){
+    if(localStorage.getItem('skin') == 'noskin'){
+        characterPic.src = "pictures/giraffe.png";
+        localStorage.setItem('skin', 'giraffe');
+    }
+    characterPic.src = "pictures/" + localStorage.getItem('skin') + ".png";
+}
+
 var startAnimations = setInterval(function () {
     if (isRunning == true && isgameOver == false) {
         grass.style.animationDuration = "2.5s";
         grass2.style.animationDuration = "2.5s";
-        characterPic.src = "pictures/giraffe-2.png";
+        characterPic.src = "pictures/" + localStorage.getItem('skin') + "-2.png";
         enemy1Pic.src = "pictures/Hund-2.png";
         enemy2Pic.src = "pictures/Tintenfisch-2.png";
         setTimeout(() => {
             if (isRunning == true && isgameOver == false) {
-                characterPic.src = "pictures/giraffe-1.png";
+                characterPic.src = "pictures/" + localStorage.getItem('skin') + "-1.png";
                 enemy1Pic.src = "pictures/Hund-1.png";
                 enemy2Pic.src = "pictures/Tintenfisch-1.png";
             }
@@ -213,25 +244,31 @@ function gameDivclick() {
 }
 
 function settingsClick() {
-    if(settingstab.style.visibility == "hidden"){
+    if(settingstab.style.visibility == "hidden" && isRunning == false){
         hometab.style.visibility = "hidden";
+        hometab3d.style.visibility = "hidden";
         settingstab.style.visibility = "visible";
+        settingstab3d.style.visibility = "visible";
     }else{
         settingstab.style.visibility = "hidden";
+        settingstab3d.style.visibility = "hidden";
     }
 }
 
 function homeClick() {
-    if(hometab.style.visibility == "hidden"){
-        settingstab.style.visibility = "hidden"
+    if(hometab.style.visibility == "hidden" && isRunning == false){
+        settingstab.style.visibility = "hidden";
+        settingstab3d.style.visibility = "hidden";
         hometab.style.visibility = "visible";
+        hometab3d.style.visibility = "visible";
     }else{
         hometab.style.visibility = "hidden";
+        hometab3d.style.visibility = "hidden";
     }
 }
 
 function start() {
-    if (isRunning == false && isgameOver == false) {
+    if (isRunning == false && isgameOver == false && settingstab.style.visibility == "hidden" && hometab.style.visibility == "hidden") {
         isRunning = true;
         grass.style.animationDuration = "2.5s";
         grass2.style.animationDuration = "2.5s";
@@ -257,9 +294,23 @@ function closeGameover() {
     cloudholder.style.cursor = "pointer";
     startText.style.visibility = 'visible';
     gameDiv.classList.add("startclick");
-    characterPic.src = "pictures/giraffe.png";
+    characterPic.src = "pictures/" + localStorage.getItem('skin') + ".png";
     counter = 0;
     counterHTML.innerHTML = counter;
+}
+
+function checkifLocked(Skin){
+    if(Skin == 'giraffe' && localStorage.getItem('level') >= giraffelevel){
+        skinGiraffelocked.style.visibility = "hidden";
+    }
+    if(Skin == 'pinguin' && localStorage.getItem('level') >= pinguinlevel){
+        skinPinguinlocked.style.visibility = "hidden";
+    }
+}
+
+function setSkin(Skin) {
+    localStorage.setItem('skin', Skin);
+    characterPic.src = "pictures/" + localStorage.getItem('skin') + ".png";
 }
 
 function levelbarCounter() {
@@ -332,6 +383,7 @@ var checkDead = setInterval(function () {
         }
         levelBar.value = newValue;
         percentagetext.innerHTML = levelBar.value + " / " + localStorage.getItem('levelBarMAX');
-        characterPic.src = "pictures/giraffe.png";
+        checkStatusSkins();
+        characterPic.src = "pictures/" + localStorage.getItem('skin') + ".png";
     }
 }, 20);
