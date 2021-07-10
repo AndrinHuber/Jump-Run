@@ -444,12 +444,9 @@ progress::-webkit-progress-value {
     margin-top: -106px;
     border: 3px solid transparent;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-}
-.levelactivation{
-    margin-top: 10px;
 }
 .lockskinicon{
     transform: scale(2);
@@ -470,6 +467,7 @@ progress::-webkit-progress-value {
     cursor: pointer;
     animation: skin .1s linear;
 }
+
 @keyframes skin{
     0%{transform: scale(1.0);}
     50%{transform: scale(1.2);}
@@ -510,6 +508,43 @@ progress::-webkit-progress-value {
     width: 35px;
     height: 90px;
 }
+.newSkin{
+    display: none;
+    margin-top: -10px;
+    margin-left: -10px;
+    position: absolute;
+    width: auto;
+    max-width: 100px;
+    height: 20px;
+    border-radius: 100px;
+    z-index: 1;
+    background-color: red;
+}
+.newSkinText{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.skinNameText{
+    color: black;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+#newSkinIsAvailable{
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 100px;
+    margin-right: -50px;
+    margin-top: -50px;
+    z-index: 999999999999;
+}
+
 @media only screen and (max-width: 550px) {
     #levelDiv{
         overflow: hidden;
@@ -558,6 +593,10 @@ progress::-webkit-progress-value {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+    }
+    #newSkinIsAvailable{
+        margin-right: 30px;
+        margin-top: 35px;
     }
 }
 @media only screen and (max-width: 1000px) {

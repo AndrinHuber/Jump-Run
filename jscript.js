@@ -26,9 +26,22 @@ var settingstab = document.getElementById("settingstab");
 var settingstab3d = document.getElementById("settingstab3d");
 var skinGiraffelocked = document.getElementById("skinGiraffelocked");
 var skinPinguinlocked = document.getElementById("skinPinguinlocked");
+var skinBunnylocked = document.getElementById("skinBunnylocked");
+var skinChickenlocked = document.getElementById("skinChickenlocked");
 var lockedDiv = document.getElementsByClassName("lockedDiv");
 var giraffeleveltext = document.getElementById("giraffeleveltext");
 var pinguinleveltext = document.getElementById("pinguinleveltext");
+var bunnyleveltext = document.getElementById("bunnyleveltext");
+var chickenleveltext = document.getElementById("chickenleveltext");
+var giraffenewSkin = document.getElementById("giraffenewSkin");
+var pinguinnewSkin = document.getElementById("pinguinnewSkin");
+var bunnynewSkin = document.getElementById("bunnynewSkin");
+var chickennewSkin = document.getElementById("chickennewSkin");
+var newSkinIsAvailable = document.getElementById("newSkinIsAvailable");
+var giraffeskinDiv = document.getElementById("giraffeskinDiv");
+var pinguinskinDiv = document.getElementById("pinguinskinDiv");
+var bunnyskinDiv = document.getElementById("bunnyskinDiv");
+var chickenskinDiv = document.getElementById("chickenskinDiv");
 var levelcounter = 0;
 var counter = 0;
 var velocity = 3;
@@ -72,18 +85,39 @@ grass.style.animationDuration = "0s";
 grass2.style.animationDuration = "0s";
 gameOver.style.visibility = "hidden";
 gameOver3d.style.visibility = "hidden";
-var giraffelevel = 5;
+newSkinIsAvailable.style.display = "none";
+giraffenewSkin.style.display = "none";
+pinguinnewSkin.style.display = "none";
+bunnynewSkin.style.display = "none";
+chickennewSkin.style.display = "none";
+var giraffelevel = 0;
 var pinguinlevel = 2;
+var bunnylevel = 5;
+var chickenlevel = 10;
 pinguinleveltext.innerHTML = "Level: " + pinguinlevel;
 giraffeleveltext.innerHTML = "Level: " + giraffelevel;
+bunnyleveltext.innerHTML = "Level: " + bunnylevel;
+chickenleveltext.innerHTML = "Level: " + chickenlevel;
 console.log("Hallo ich bin eine Konsole :)\nSchön hast du mich gefunden hast. In der Konsole siehst du Fehlermeldungen vom Spiel.\nGeht etwas im Spiel nicht? Brauchst du Hilfe? Dann kannst du hier die entsprechenden Informationen sehen!");
 checkSkin();
 checkStatusSkins();
+checkifaSkinIsNew();
 //checkifBanned();
 
 function checkStatusSkins(){
     checkifLocked('giraffe');
     checkifLocked('pinguin');
+    checkifLocked('bunny');
+    checkifLocked('chicken');
+}
+
+function checkifaSkinIsNew(){
+    if(giraffenewSkin.style.display == "none" && pinguinnewSkin.style.display == "none" && bunnynewSkin.style.display == "none" 
+    && chickennewSkin.style.display == "none"){
+        newSkinIsAvailable.style.display = "none";
+    }else{
+        newSkinIsAvailable.style.display = "block";
+    }
 }
 
 window.addEventListener('storage', function (e) {
@@ -302,15 +336,70 @@ function closeGameover() {
 function checkifLocked(Skin){
     if(Skin == 'giraffe' && localStorage.getItem('level') >= giraffelevel){
         skinGiraffelocked.style.visibility = "hidden";
+        if(characterPic.src.includes("giraffe") == true){
+            giraffeskinDiv.style.backgroundColor = "lightpink";
+        }
+        if((localStorage.getItem('level') - giraffelevel) == 0){
+            giraffenewSkin.style.display = "block";
+        }
     }
     if(Skin == 'pinguin' && localStorage.getItem('level') >= pinguinlevel){
         skinPinguinlocked.style.visibility = "hidden";
+        if(characterPic.src.includes("pinguin") == true){
+            pinguinskinDiv.style.backgroundColor = "lightpink";
+        }
+        if((localStorage.getItem('level') - pinguinlevel) == 0){
+            pinguinnewSkin.style.display = "block";
+        }
+    }
+    if(Skin == 'bunny' && localStorage.getItem('level') >= bunnylevel){
+        skinBunnylocked.style.visibility = "hidden";
+        if(characterPic.src.includes("bunny") == true){
+            bunnyskinDiv.style.backgroundColor = "lightpink";
+        }
+        if((localStorage.getItem('level') - bunnylevel) == 0){
+            bunnynewSkin.style.display = "block";
+        }
+    }
+    if(Skin == 'chicken' && localStorage.getItem('level') >= chickenlevel){
+        skinChickenlocked.style.visibility = "hidden";
+        if(characterPic.src.includes("chicken") == true){
+            chickenskinDiv.style.backgroundColor = "lightpink";
+        }
+        if((localStorage.getItem('level') - chickenlevel) == 0){
+           chickennewSkin.style.display = "block";
+        }
     }
 }
 
 function setSkin(Skin) {
     localStorage.setItem('skin', Skin);
+    removeNewText(Skin);
     characterPic.src = "pictures/" + localStorage.getItem('skin') + ".png";
+}
+
+function removeNewText(Skin){
+    giraffeskinDiv.style.backgroundColor = "whitesmoke";
+    pinguinskinDiv.style.backgroundColor = "whitesmoke";
+    bunnyskinDiv.style.backgroundColor = "whitesmoke";
+    chickenskinDiv.style.backgroundColor = "whitesmoke";
+    if(Skin == 'giraffe'){
+        giraffenewSkin.style.display = "none";
+        giraffeskinDiv.style.backgroundColor = "lightpink";
+    } 
+    if(Skin == 'pinguin'){
+        pinguinnewSkin.style.display = "none";
+        pinguinskinDiv.style.backgroundColor = "lightpink";
+    }
+    if(Skin == 'bunny'){
+        bunnynewSkin.style.display = "none";
+        bunnyskinDiv.style.backgroundColor = "lightpink";
+    }
+    if(Skin == 'chicken'){
+        chickennewSkin.style.display = "none";
+        chickenskinDiv.style.backgroundColor = "lightpink";
+    }
+    checkifaSkinIsNew();
 }
 
 function levelbarCounter() {
@@ -387,3 +476,21 @@ var checkDead = setInterval(function () {
         characterPic.src = "pictures/" + localStorage.getItem('skin') + ".png";
     }
 }, 20);
+
+var arrLang = {
+    'deutsch' : {
+        'starttext' : 'Um das Spiel zu starten Drücke:<br> [Klick] | [Leertaste] | [KeyUP]'
+    },
+    'english' : {
+        'starttext' : 'To start the Game press:<br> [Click] | [Space] | [KeyUP]'
+    }
+};
+$(function(){
+    $('translate').click(function(){
+      var lang = $(this).attr('starttext');
+
+      $('.lang').each(function(index, element){
+          $(this).text(arrLang[lang][$(this).attr('key')]);
+      });
+    });
+});

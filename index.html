@@ -15,6 +15,7 @@
     <div id="buttonholder">
         <div id="buttondiv">
             <button class="buttons" id="settingbutton" onclick="settingsClick();"><i class="material-icons buttonicons">settings</i></button>
+            <div id="newSkinIsAvailable"></div>
             <button class="buttons" id="homebutton" onclick="homeClick();"><i class="material-icons buttonicons">face</i></button>
         </div>
     </div>
@@ -36,40 +37,58 @@
             <div class="buttonDiv"><div class="buttonDivtext">Skins</div><div class="buttonDivbutton" onclick="homeClick()"><i class="material-icons buttonicons">clear</i></div></div>
             <div id="skintabtabflex">
                 <div class="divwrapper">
-                    <div class="skindiv" onclick="setSkin('giraffe')"><img class="skinPic" src="pictures/giraffe.png"></div>
-                    <div id="skinGiraffelocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation" id="giraffeleveltext">Level:</div></div>
+                    <div id="giraffenewSkin" class="newSkin"><div class="newSkinText">Neu</div></div>
+                    <div id="giraffeskinDiv" class="skindiv" onclick="setSkin('giraffe')"><img class="skinPic" src="pictures/giraffe.png"></div>
+                    <div id="skinGiraffelocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div id="giraffeleveltext">Level:</div></div>
+                    <div class="skinNameText">Giraffe</div>
                 </div>
                 <div class="divwrapper">
-                    <div class="skindiv" onclick="setSkin('pinguin')"><img class="skinPic" src="pictures/pinguin.png"></div>
-                    <div id="skinPinguinlocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation" id="pinguinleveltext">Level:</div></div>
+                    <div id="pinguinnewSkin" class="newSkin"><div class="newSkinText">Neu</div></div>
+                    <div id="pinguinskinDiv"  class="skindiv" onclick="setSkin('pinguin')"><img class="skinPic" src="pictures/pinguin.png"></div>
+                    <div id="skinPinguinlocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div id="pinguinleveltext">Level:</div></div>
+                    <div class="skinNameText">Pinguin</div>
                 </div>
                 <div class="divwrapper">
+                    <div id="bunnynewSkin" class="newSkin"><div class="newSkinText">Neu</div></div>
+                    <div id="bunnyskinDiv" class="skindiv" onclick="setSkin('bunny')"><img class="skinPic" src="pictures/bunny.png"></div>
+                    <div id="skinBunnylocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div id="bunnyleveltext">Level:</div></div>
+                    <div class="skinNameText">Bunny</div>
+                </div>
+                <div class="divwrapper">
+                    <div id="chickennewSkin" class="newSkin"><div class="newSkinText">Neu</div></div>
+                    <div id="chickenskinDiv" class="skindiv" onclick="setSkin('chicken')"><img class="skinPic" src="pictures/chicken.png"></div>
+                    <div id="skinChickenlocked" class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div id="chickenleveltext">Level:</div></div>
+                    <div class="skinNameText">mini Chicken</div>
+                </div>
+                <div class="divwrapper">
+                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
                     <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
+                    <div class="skinNameText">unknown</div>
                 </div>
                 <div class="divwrapper">
+                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
                     <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
+                    <div class="skinNameText">unknown</div>
                 </div>
                 <div class="divwrapper">
+                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
                     <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
+                    <div class="skinNameText">unknown</div>
                 </div>
                 <div class="divwrapper">
+                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
                     <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
+                    <div class="skinNameText">unknown</div>
                 </div>
                 <div class="divwrapper">
+                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
                     <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
-                </div>
-                <div class="divwrapper">
-                    <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
-                </div>
-                <div class="divwrapper">
-                    <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div class="levelactivation">Level:</div></div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
+                    <div class="skinNameText">unknown</div>
                 </div>
             </div>
         </div>
@@ -77,6 +96,8 @@
         <div id="settingstab">
             <div class="buttonDiv"><div class="buttonDivtext">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
             <div id="settingstabflex">
+                <button class="translate" id="deutsch"></button>
+                <button class="translate" id="english"></button>
                 <div class="einstellungsdiv"></div>
                 <div class="einstellungsdiv"></div>
                 <div class="einstellungsdiv"></div>
