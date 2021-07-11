@@ -94,10 +94,12 @@
         </div>
         <div id="hometab3d"></div>
         <div id="settingstab">
-            <div class="buttonDiv"><div class="buttonDivtext">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
+            <div class="buttonDiv"><div class="buttonDivtext" id="settings">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
             <div id="settingstabflex">
-                <button class="translate" id="deutsch"></button>
-                <button class="translate" id="english"></button>
+                <select name="languages">
+                    <option value="deutsch"><a href="#deu" data-reload>deutsch</a></option>
+                    <option value="english"><a href="#eng" data-reload>english</a></option>
+                  </select>
                 <div class="einstellungsdiv"></div>
                 <div class="einstellungsdiv"></div>
                 <div class="einstellungsdiv"></div>

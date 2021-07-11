@@ -93,7 +93,7 @@ chickennewSkin.style.display = "none";
 var giraffelevel = 0;
 var pinguinlevel = 2;
 var bunnylevel = 5;
-var chickenlevel = 10;
+var chickenlevel = 7;
 pinguinleveltext.innerHTML = "Level: " + pinguinlevel;
 giraffeleveltext.innerHTML = "Level: " + giraffelevel;
 bunnyleveltext.innerHTML = "Level: " + bunnylevel;
@@ -339,7 +339,7 @@ function checkifLocked(Skin){
         if(characterPic.src.includes("giraffe") == true){
             giraffeskinDiv.style.backgroundColor = "lightpink";
         }
-        if((localStorage.getItem('level') - giraffelevel) == 0){
+        if((localStorage.getItem('level') - giraffelevel) == 0 && giraffeskinDiv.style.backgroundColor != "lightpink"){
             giraffenewSkin.style.display = "block";
         }
     }
@@ -348,7 +348,7 @@ function checkifLocked(Skin){
         if(characterPic.src.includes("pinguin") == true){
             pinguinskinDiv.style.backgroundColor = "lightpink";
         }
-        if((localStorage.getItem('level') - pinguinlevel) == 0){
+        if((localStorage.getItem('level') - pinguinlevel) == 0  && pinguinskinDiv.style.backgroundColor != "lightpink"){
             pinguinnewSkin.style.display = "block";
         }
     }
@@ -357,7 +357,7 @@ function checkifLocked(Skin){
         if(characterPic.src.includes("bunny") == true){
             bunnyskinDiv.style.backgroundColor = "lightpink";
         }
-        if((localStorage.getItem('level') - bunnylevel) == 0){
+        if((localStorage.getItem('level') - bunnylevel) == 0  && bunnyskinDiv.style.backgroundColor != "lightpink"){
             bunnynewSkin.style.display = "block";
         }
     }
@@ -366,8 +366,8 @@ function checkifLocked(Skin){
         if(characterPic.src.includes("chicken") == true){
             chickenskinDiv.style.backgroundColor = "lightpink";
         }
-        if((localStorage.getItem('level') - chickenlevel) == 0){
-           chickennewSkin.style.display = "block";
+        if((localStorage.getItem('level') - chickenlevel) == 0 && chickenskinDiv.style.backgroundColor != "lightpink"){
+            chickennewSkin.style.display = "block";
         }
     }
 }
@@ -477,20 +477,58 @@ var checkDead = setInterval(function () {
     }
 }, 20);
 
-var arrLang = {
-    'deutsch' : {
-        'starttext' : 'Um das Spiel zu starten Drücke:<br> [Klick] | [Leertaste] | [KeyUP]'
+var language = {
+    deu: {
+        starttext: 'Um das Spiel zu starten Drücke: <br> [Klick] | [Leertaste] | [KeyUP]',
+        gameoverbutton: 'Weiter',
+        incDevText: 'Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]',
+        settings: 'Einstellungen',
+        newSkinText: 'Neu'
     },
-    'english' : {
-        'starttext' : 'To start the Game press:<br> [Click] | [Space] | [KeyUP]'
+    eng : {
+        starttext: 'To start the Game press:<br> [Click] | [Space] | [KeyUP]',
+        gameoverbutton: 'Play',
+        incDevText: 'Unfortunately, the game is incompatible with this device!<br>[minimum size: 400 x 650]',
+        settings: 'Settings',
+        newSkinText: 'New'
     }
 };
-$(function(){
-    $('translate').click(function(){
-      var lang = $(this).attr('starttext');
 
-      $('.lang').each(function(index, element){
-          $(this).text(arrLang[lang][$(this).attr('key')]);
-      });
-    });
-});
+if(window.location.hash){
+    if(window.location.hash == "#eng"){
+        setEnglish();
+    }
+    if(window.location.hash == "#deu"){
+        starttext.innerHTML = language.deu.starttext;
+        gameoverbutton.innerHTML = language.deu.gameoverbutton;
+        incDevText.innerHTML = language.deu.incDevText;
+        settings.innerHTML = language.deu.settings;
+        elements=document.getElementsByClassName("newSkinText");  // Find the elements
+        for(var i = 0; i < elements.length; i++){
+            elements[i].innerText=language.deu.newSkinText;    // Change the content
+        }
+    }
+}else{
+    setEnglish();
+}
+
+function setEnglish(){
+    starttext.innerHTML = language.eng.starttext;
+    gameoverbutton.innerHTML = language.eng.gameoverbutton
+    incDevText.innerHTML = language.eng.incDevText;
+    settings.innerHTML = language.eng.settings;
+    elements=document.getElementsByClassName("newSkinText");  // Find the elements
+    for(var i = 0; i < elements.length; i++){
+        elements[i].innerText=language.eng.newSkinText;    // Change the content
+    }
+}
+
+var dataReload = document.querySelectorAll("[data-reload]");
+
+for(i = 0; i <= dataReload.length; i++){
+    dataReload[i].onclick = function(){
+        setTimeout(function() {
+            location.reload();
+        }, 100);
+    }
+}

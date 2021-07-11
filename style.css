@@ -157,6 +157,9 @@ progress::-webkit-progress-value {
     height: 35px;
     background-color:lightgreen;
     border: 3px solid black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
 }
 #gameoverbutton:active{
     margin-right: 0px;
