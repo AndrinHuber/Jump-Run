@@ -42,6 +42,15 @@ var giraffeskinDiv = document.getElementById("giraffeskinDiv");
 var pinguinskinDiv = document.getElementById("pinguinskinDiv");
 var bunnyskinDiv = document.getElementById("bunnyskinDiv");
 var chickenskinDiv = document.getElementById("chickenskinDiv");
+var languagetext = document.getElementById("languagetext");
+var styletxt = document.getElementById("styletxt");
+var darkMode = document.getElementById("darkMode");
+var standartMode = document.getElementById("standartMode");
+var deu = document.getElementById("deu");
+var eng = document.getElementById("eng");
+var fra = document.getElementById("fra");
+var esp = document.getElementById("esp");
+var che = document.getElementById("che");
 var levelcounter = 0;
 var counter = 0;
 var velocity = 3;
@@ -65,6 +74,9 @@ if (localStorage.getItem('highscore') == null || localStorage.getItem('highscore
 }
 if (localStorage.getItem('skin') == null || localStorage.getItem('skin') == "") {
     localStorage.setItem('skin', 'noskin');
+}
+if (localStorage.getItem('mode') == null || localStorage.getItem('mode') == "") {
+    localStorage.setItem('mode', 'standartMode');
 }
 
 levelText.innerHTML = "Level: " + localStorage.getItem('level');
@@ -102,6 +114,8 @@ console.log("Hallo ich bin eine Konsole :)\nSchön hast du mich gefunden hast. I
 checkSkin();
 checkStatusSkins();
 checkifaSkinIsNew();
+checkMode();
+checkifAdBlock();
 //checkifBanned();
 
 function checkStatusSkins(){
@@ -109,6 +123,33 @@ function checkStatusSkins(){
     checkifLocked('pinguin');
     checkifLocked('bunny');
     checkifLocked('chicken');
+}
+
+function checkifAdBlock(){
+    if( document.getElementById('PR44EPxgRGrsoVe') ){
+        alert('Es ist kein AdBlocker aktiv!');
+      } else {
+        alert('AdBlocker ist aktiv und Werbung wird blockiert!');
+      }
+}
+
+function checkMode(){
+    if(localStorage.getItem('mode') == 'standartMode'){
+        document.body.style.backgroundColor = "lightpink";
+    }
+    if(localStorage.getItem('mode') == 'darkMode'){
+        document.body.style.backgroundColor = "black";
+    }
+}
+
+function standart(){
+    localStorage.setItem('mode', 'standartMode');
+    checkMode();
+}
+
+function dark(){
+    localStorage.setItem('mode', 'darkMode');
+    checkMode();
 }
 
 function checkifaSkinIsNew(){
@@ -478,57 +519,141 @@ var checkDead = setInterval(function () {
 }, 20);
 
 var language = {
-    deu: {
-        starttext: 'Um das Spiel zu starten Drücke: <br> [Klick] | [Leertaste] | [KeyUP]',
-        gameoverbutton: 'Weiter',
-        incDevText: 'Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]',
-        settings: 'Einstellungen',
-        newSkinText: 'Neu'
-    },
     eng : {
         starttext: 'To start the Game press:<br> [Click] | [Space] | [KeyUP]',
         gameoverbutton: 'Play',
         incDevText: 'Unfortunately, the game is incompatible with this device!<br>[minimum size: 400 x 650]',
         settings: 'Settings',
-        newSkinText: 'New'
+        newSkinText: 'New',
+        languagetext: "Language",
+        styletxt: "Style"
+    },
+    deu: {
+        starttext: 'Um das Spiel zu starten Drücke: <br> [Klick] | [Leertaste] | [KeyUP]',
+        gameoverbutton: 'Weiter',
+        incDevText: 'Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]',
+        settings: 'Einstellungen',
+        newSkinText: 'Neu',
+        languagetext: "Sprache",
+        styletxt: "Aussehen"
+    },
+    fra : {
+        starttext: 'Pour démarrer le jeu, appuyez sur : <br> [Cliquez] | [Espace] | [KeyUP]',
+        gameoverbutton: 'Jouer',
+        incDevText: 'Malheureusement, le jeu est incompatible avec cet appareil !<br>[taille minimum : 400 x 650]',
+        settings: 'Paramètres',
+        newSkinText: 'Nouveau',
+        languagetext: "Langue",
+        styletxt: "Style"
+    },
+    esp : {
+        starttext: 'Para iniciar el juego, presione: <br> [clic] | [Espacio] | [KeyUP]',
+        gameoverbutton: 'tocar',
+        incDevText: 'Desafortunadamente, el juego no es compatible con este dispositivo. <br> [Tamaño mínimo: 400 x 650]',
+        settings: 'ajustes',
+        newSkinText: 'Nuevo',
+        languagetext: "lengua",
+        styletxt: "apariencia"
+    },
+    che : {
+        starttext: "Ums Spiel z'starte druck: <br> [Klick] | [Leertaste] | [KeyUP]",
+        gameoverbutton: 'Wiiter',
+        incDevText: "s'Spiel isch mit dem Grät leider inkompatibel!<br>[Minimum Grössi: 400 x 650]",
+        settings: 'Iistellige',
+        newSkinText: 'Neu',
+        languagetext: "Sproch",
+        styletxt: "Ussehe"
     }
 };
 
 if(window.location.hash){
     if(window.location.hash == "#eng"){
+        setSelectedLanguage(eng);
         setEnglish();
     }
     if(window.location.hash == "#deu"){
+        setSelectedLanguage(deu);
         starttext.innerHTML = language.deu.starttext;
         gameoverbutton.innerHTML = language.deu.gameoverbutton;
         incDevText.innerHTML = language.deu.incDevText;
         settings.innerHTML = language.deu.settings;
-        elements=document.getElementsByClassName("newSkinText");  // Find the elements
+        styletxt.innerHTML = language.deu.styletxt;
+        languagetext.innerHTML = language.deu.languagetext;
+        elements=document.getElementsByClassName("newSkinText");
         for(var i = 0; i < elements.length; i++){
-            elements[i].innerText=language.deu.newSkinText;    // Change the content
+            elements[i].innerText=language.deu.newSkinText;
+        }
+    }
+    if(window.location.hash == "#fra"){
+        setSelectedLanguage(fra);
+        starttext.innerHTML = language.fra.starttext;
+        gameoverbutton.innerHTML = language.fra.gameoverbutton;
+        incDevText.innerHTML = language.fra.incDevText;
+        settings.innerHTML = language.fra.settings;
+        styletxt.innerHTML = language.fra.styletxt;
+        languagetext.innerHTML = language.fra.languagetext;
+        elements=document.getElementsByClassName("newSkinText");
+        for(var i = 0; i < elements.length; i++){
+            elements[i].innerText=language.fra.newSkinText;
+        }
+    }
+    if(window.location.hash == "#esp"){
+        setSelectedLanguage(esp);
+        starttext.innerHTML = language.esp.starttext;
+        gameoverbutton.innerHTML = language.esp.gameoverbutton;
+        incDevText.innerHTML = language.esp.incDevText;
+        settings.innerHTML = language.esp.settings;
+        styletxt.innerHTML = language.esp.styletxt;
+        languagetext.innerHTML = language.esp.languagetext;
+        elements=document.getElementsByClassName("newSkinText");
+        for(var i = 0; i < elements.length; i++){
+            elements[i].innerText=language.esp.newSkinText;
+        }
+    }
+    if(window.location.hash == "#che"){
+        setSelectedLanguage(che);
+        starttext.innerHTML = language.che.starttext;
+        gameoverbutton.innerHTML = language.che.gameoverbutton;
+        incDevText.innerHTML = language.che.incDevText;
+        settings.innerHTML = language.che.settings;
+        styletxt.innerHTML = language.che.styletxt;
+        languagetext.innerHTML = language.che.languagetext;
+        elements=document.getElementsByClassName("newSkinText");
+        for(var i = 0; i < elements.length; i++){
+            elements[i].innerText=language.che.newSkinText;
         }
     }
 }else{
+    setSelectedLanguage(eng);
     setEnglish();
 }
 
+function setSelectedLanguage(language){
+    language.style.backgroundColor = "black";
+    language.style.color = "white";
+}
 function setEnglish(){
     starttext.innerHTML = language.eng.starttext;
     gameoverbutton.innerHTML = language.eng.gameoverbutton
     incDevText.innerHTML = language.eng.incDevText;
     settings.innerHTML = language.eng.settings;
-    elements=document.getElementsByClassName("newSkinText");  // Find the elements
+    styletxt.innerHTML = language.eng.styletxt;
+    languagetext.innerHTML = language.eng.languagetext;
+    elements=document.getElementsByClassName("newSkinText");
     for(var i = 0; i < elements.length; i++){
-        elements[i].innerText=language.eng.newSkinText;    // Change the content
+        elements[i].innerText=language.eng.newSkinText;
     }
 }
 
 var dataReload = document.querySelectorAll("[data-reload]");
 
+
 for(i = 0; i <= dataReload.length; i++){
-    dataReload[i].onclick = function(){
-        setTimeout(function() {
-            location.reload();
-        }, 100);
+    if(dataReload[i] != undefined){
+        dataReload[i].onclick = function(){
+            setTimeout(function() {
+                location.reload();
+            }, 100);
+        }
     }
 }

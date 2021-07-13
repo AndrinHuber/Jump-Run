@@ -2,6 +2,16 @@
     padding: 0;
     margin: 0;
 }
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a{
+    color: black;
+    background-color: transparent;
+    text-decoration: none; 
+}
 ::selection {
     background: transparent
 }
@@ -397,13 +407,6 @@ progress::-webkit-progress-value {
     z-index: 9;
     overflow: auto;
 }
-#settingstabflex{
-    margin-top: 80px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-}
 #settingstab3d{
     position: fixed;
     background-color: #FED766;
@@ -414,15 +417,65 @@ progress::-webkit-progress-value {
     margin-top: 30px;
     border: 3px solid black;
 }
+#settingstabflex{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .einstellungsdiv{
     border-radius: 5px;
-    width: 100px;
-    height: 100px;
-    background-color: lightgray;
-    margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
+}
+.flags{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+}
+.flagtext{
+    position: absolute;
+    margin-left: 60px;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+    max-width: 80px;
+}
+#languageDiv{
+    border: 3px solid black;
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.lanDivs:hover{
+    animation: skin .1s linear;
+}
+#colorDiv{
+    border: 3px solid black;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.lanDivs{
+    margin: 20px;
+    background-color: white;
+    width: 150px;
+    max-width: 300px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 5px 5px grey;
+}
+.settingsText{
+    font-size: 30px;
+    color: black;
 }
 #skintabtabflex{
     position: absolute;
@@ -480,7 +533,6 @@ progress::-webkit-progress-value {
     position: fixed;
     z-index: 9999999;
     background-color: #E0DFD5;
-    font-size: 50px;
     width: 700px;
     border: 3px solid black;
     display: flex;
@@ -506,6 +558,7 @@ progress::-webkit-progress-value {
 }
 .buttonDivtext{
     color: black;
+    font-size: 50px;
 }
 .skinPic{
     width: 35px;
@@ -548,6 +601,20 @@ progress::-webkit-progress-value {
     z-index: 999999999999;
 }
 
+.styleDiv{
+    color: black;
+    margin: 10px;
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: whitesmoke;
+    border: 3px solid black;
+}
+.styleDiv:hover{
+    animation: skin .1s linear;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 550px) {
     #levelDiv{
         overflow: hidden;
@@ -579,6 +646,13 @@ progress::-webkit-progress-value {
         height: 20px;
         border: 3px solid black;
         background-color: #FED766;
+    }
+    .buttonDivtext{
+        font-size: 30px;
+    }
+    .buttonDivbutton{
+        width: 20px;
+        height: 20px;
     }
 }
 @media only screen and (max-width: 800px) {

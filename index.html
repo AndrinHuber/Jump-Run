@@ -96,29 +96,19 @@
         <div id="settingstab">
             <div class="buttonDiv"><div class="buttonDivtext" id="settings">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
             <div id="settingstabflex">
-                <select name="languages">
-                    <option value="deutsch"><a href="#deu" data-reload>deutsch</a></option>
-                    <option value="english"><a href="#eng" data-reload>english</a></option>
-                  </select>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
-                <div class="einstellungsdiv"></div>
+                <div class="settingsText" id="languagetext">Language</div>
+                <div class="einstellungsdiv" id="languageDiv">
+                    <a href="#deu" data-reload><div id="deu" class="lanDivs"><img class="flags" src="pictures/flags/deu.svg"><p class="flagtext">Deutsch</p></div></a>
+                    <a href="#eng" data-reload><div id="eng" class="lanDivs"><img class="flags" src="pictures/flags/gbr.svg"><p class="flagtext">English</p></div></a>
+                    <a href="#fra" data-reload><div id="fra" class="lanDivs"><img class="flags" src="pictures/flags/fra.svg"><p class="flagtext">Français</p></div></a>
+                    <a href="#esp" data-reload><div id="esp" class="lanDivs"><img class="flags" src="pictures/flags/esp.svg"><p class="flagtext">Español</p></div></a>
+                    <a href="#che" data-reload><div id="che" class="lanDivs"><img class="flags" src="pictures/flags/che.svg"><p class="flagtext">Schwiizerdütsch</p></div></a>
+                </div>
+                <div class="settingsText" id="styletxt">Style</div>
+                <div class="einstellungsdiv" id="colorDiv">
+                    <div class="styleDiv" id="standartMode" onclick="standart();">Standart</div>
+                    <div class="styleDiv" id="darkMode" onclick="dark();">DARK</div>
+                </div>
             </div>
         </div>
         <div id="settingstab3d"></div>
@@ -149,4 +139,5 @@
     </div>
     <script language="javascript" type="text/javascript" src="jscript.js"></script>
 </body>
+<script src="/ads.js" type="text/javascript"></script>
 </html>
