@@ -436,13 +436,9 @@ progress::-webkit-progress-value {
     border-radius: 100px;
 }
 .flagtext{
-    position: absolute;
-    margin-left: 60px;
+    margin: 10px;
+    margin-right: 15px;
     font-size: 20px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden; 
-    max-width: 80px;
 }
 #languageDiv{
     border: 3px solid black;
@@ -462,9 +458,8 @@ progress::-webkit-progress-value {
     justify-content: space-evenly;
 }
 .lanDivs{
-    margin: 20px;
+    margin: 15px;
     background-color: white;
-    width: 150px;
     max-width: 300px;
     height: 50px;
     border-radius: 100px;

@@ -110,13 +110,21 @@ pinguinleveltext.innerHTML = "Level: " + pinguinlevel;
 giraffeleveltext.innerHTML = "Level: " + giraffelevel;
 bunnyleveltext.innerHTML = "Level: " + bunnylevel;
 chickenleveltext.innerHTML = "Level: " + chickenlevel;
-console.log("Hallo ich bin eine Konsole :)\nSchön hast du mich gefunden hast. In der Konsole siehst du Fehlermeldungen vom Spiel.\nGeht etwas im Spiel nicht? Brauchst du Hilfe? Dann kannst du hier die entsprechenden Informationen sehen!");
+var consoleTextVar;
+var BannedMessageVar;
+var BannedMessage1Var;
+var BannedMessage2Var;
+var newHighscoreTextVar;
+var newLevelTextVar;
+setLanguage();
+console.log(consoleTextVar);
 checkSkin();
 checkStatusSkins();
 checkifaSkinIsNew();
 checkMode();
 checkifAdBlock();
 //checkifBanned();
+
 
 function checkStatusSkins(){
     checkifLocked('giraffe');
@@ -127,9 +135,9 @@ function checkStatusSkins(){
 
 function checkifAdBlock(){
     if( document.getElementById('PR44EPxgRGrsoVe') ){
-        alert('Es ist kein AdBlocker aktiv!');
+        console.log('Es ist kein AdBlocker aktiv!');
       } else {
-        alert('AdBlocker ist aktiv und Werbung wird blockiert!');
+        console.log('AdBlocker ist aktiv und Werbung wird blockiert!');
       }
 }
 
@@ -168,7 +176,7 @@ window.addEventListener('storage', function (e) {
 function checkifBanned() {
     if (localStorage.getItem('penalty') >= 2) {
         while (0 == 0) {
-            alert("Du Kannst dieses Spiel NICHT MEHR SPIELEN, weil du betrügen wolltest!");
+            alert(BannedMessageVar);
         }
     }
 }
@@ -181,10 +189,10 @@ function changeMessage(){
   }
   if(localStorage.getItem('penalty') == 0){
     localStorage.setItem('penalty', 1);
-    alert("Bitte verändere den Local Storage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird dir beim nächsten mal ALLES Zurückgesetzt und du kannst das Spiel NICHT mehr spielen! :)");
+    alert(BannedMessage1Var);
   }else{
     localStorage.setItem('penalty', 2);
-    alert("Bitte verändere den Local Storage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird jetzt alles Zurückgesetzt und das spielen UNMÖGLICH gemacht! :)");
+    alert(BannedMessage2Var);
     checkifBanned();
   }
 }
@@ -476,7 +484,7 @@ var checkDead = setInterval(function () {
             case (highscore < counter):
                 localStorage.setItem('highscore', counter);
                 Textscore.innerHTML = "Score: " + counter;
-                Texthighscore.innerHTML = "*NEUER* Highscore: " + localStorage.getItem("highscore");
+                Texthighscore.innerHTML = newHighscoreTextVar + localStorage.getItem("highscore");
                 break;
             case (highscore >= counter):
                 Textscore.innerHTML = "Score: " + counter;
@@ -506,7 +514,7 @@ var checkDead = setInterval(function () {
             levelbarCounter();
         }
         if (levelcounter > 0) {
-            levelText.innerHTML = "*NEUES* Level: " + localStorage.getItem('level');
+            levelText.innerHTML = newLevelTextVar + localStorage.getItem('level');
             levelcounter = 0;
         } else {
             levelText.innerHTML = "Level: " + localStorage.getItem('level');
@@ -518,142 +526,205 @@ var checkDead = setInterval(function () {
     }
 }, 20);
 
-var language = {
-    eng : {
-        starttext: 'To start the Game press:<br> [Click] | [Space] | [KeyUP]',
-        gameoverbutton: 'Play',
-        incDevText: 'Unfortunately, the game is incompatible with this device!<br>[minimum size: 400 x 650]',
-        settings: 'Settings',
-        newSkinText: 'New',
-        languagetext: "Language",
-        styletxt: "Style"
-    },
-    deu: {
-        starttext: 'Um das Spiel zu starten Drücke: <br> [Klick] | [Leertaste] | [KeyUP]',
-        gameoverbutton: 'Weiter',
-        incDevText: 'Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]',
-        settings: 'Einstellungen',
-        newSkinText: 'Neu',
-        languagetext: "Sprache",
-        styletxt: "Aussehen"
-    },
-    fra : {
-        starttext: 'Pour démarrer le jeu, appuyez sur : <br> [Cliquez] | [Espace] | [KeyUP]',
-        gameoverbutton: 'Jouer',
-        incDevText: 'Malheureusement, le jeu est incompatible avec cet appareil !<br>[taille minimum : 400 x 650]',
-        settings: 'Paramètres',
-        newSkinText: 'Nouveau',
-        languagetext: "Langue",
-        styletxt: "Style"
-    },
-    esp : {
-        starttext: 'Para iniciar el juego, presione: <br> [clic] | [Espacio] | [KeyUP]',
-        gameoverbutton: 'tocar',
-        incDevText: 'Desafortunadamente, el juego no es compatible con este dispositivo. <br> [Tamaño mínimo: 400 x 650]',
-        settings: 'ajustes',
-        newSkinText: 'Nuevo',
-        languagetext: "lengua",
-        styletxt: "apariencia"
-    },
-    che : {
-        starttext: "Ums Spiel z'starte druck: <br> [Klick] | [Leertaste] | [KeyUP]",
-        gameoverbutton: 'Wiiter',
-        incDevText: "s'Spiel isch mit dem Grät leider inkompatibel!<br>[Minimum Grössi: 400 x 650]",
-        settings: 'Iistellige',
-        newSkinText: 'Neu',
-        languagetext: "Sproch",
-        styletxt: "Ussehe"
-    }
-};
+function setLanguage(){
+    var language = {
+        eng : {
+            starttext: 'To start the Game press:<br> [Click] | [Space] | [KeyUP]',
+            gameoverbutton: 'Play',
+            incDevText: 'Unfortunately, the game is incompatible with this device!<br>[minimum size: 400 x 650]',
+            settings: 'Settings',
+            newSkinText: 'New',
+            languagetext: "Language",
+            styletxt: "Style",
+            consoleText: "Hello, I'm a console:) \nGood that you found me. In the console you can see error messages from the game.\nIs something wrong in the game? Do you need help? Then you can see the relevant information here!",
+            BannedMessage: "You CANNOT PLAY this game anymore because you wanted to cheat!",
+            BannedMessage1: "Please do NOT change the local storage! :( \n(Do you really need to do that?) \nAs a punishment, EVERYTHING will be reset the next time and you CANNOT play the game anymore! :)",
+            BannedMessage2: "DO NOT change the local storage! :( \n (Do you really need to do that?) \n As a punishment, EVERYTHING will be reset the next time and you CANNOT play the game anymore! :)",
+            newHighscoreText: "*NEW* Highscore: ",
+            newLevelText: "*NEW* Level: "
+        },
+        deu: {
+            starttext: 'Um das Spiel zu starten Drücke: <br> [Klick] | [Leertaste] | [KeyUP]',
+            gameoverbutton: 'Weiter',
+            incDevText: 'Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]',
+            settings: 'Einstellungen',
+            newSkinText: 'Neu',
+            languagetext: "Sprache",
+            styletxt: "Aussehen",
+            consoleText: "Hallo ich bin eine Konsole :)\nSchön, dass du mich gefunden hast. In der Konsole siehst du Fehlermeldungen vom Spiel.\nGeht etwas im Spiel nicht? Brauchst du Hilfe? Dann kannst du hier die entsprechenden Informationen sehen!",
+            BannedMessage: "Du Kannst dieses Spiel NICHT MEHR SPIELEN, weil du betrügen wolltest!",
+            BannedMessage1: "Bitte verändere den Local Storage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird dir beim nächsten mal ALLES Zurückgesetzt und du kannst das Spiel NICHT mehr spielen! :)",
+            BannedMessage2: "Verändere den Local Storage NICHT! :( \n(Hast du das wirklich Nötig?) \n Zur Strafe wird jetzt alles Zurückgesetzt und das spielen UNMÖGLICH gemacht! :)",
+            newHighscoreText: "*NEUER* Highscore: ",
+            newLevelText: "*NEUES* Level: "
+        },
+        fra : {
+            starttext: 'Pour démarrer le jeu, appuyez sur : <br> [Cliquez] | [Espace] | [KeyUP]',
+            gameoverbutton: 'Jouer',
+            incDevText: 'Malheureusement, le jeu est incompatible avec cet appareil !<br>[taille minimum : 400 x 650]',
+            settings: 'Paramètres',
+            newSkinText: 'Nouveau',
+            languagetext: "Langue",
+            styletxt: "Style",
+            consoleText: "Bonjour, je suis une console :) \nBon que vous m'ayez trouvé. Dans la console, vous pouvez voir les messages d'erreur du jeu.\nQuelque chose ne va pas dans le jeu ? As-tu besoin d'aide? Alors vous pouvez voir les informations pertinentes ici!",
+            BannedMessage: "Vous NE POUVEZ PLUS JOUER à ce jeu parce que vous vouliez tricher !",
+            BannedMessage1: "Veuillez NE PAS modifier le stockage local ! :( \n(Avez-vous vraiment besoin de ça ?) \nEn guise de punition, TOUT sera réinitialisé la prochaine fois et vous NE POUVEZ PLUS jouer au jeu ! :)",
+            BannedMessage2: "NE PAS modifier le stockage local ! :( \n(Avez-vous vraiment besoin de ça ?) \nEn guise de punition, tout sera désormais réinitialisé et le jeu deviendra IMPOSSIBLE ! :)",
+            newHighscoreText: "*NOUVEAU* Highscore: ",
+            newLevelText: "*NOUVEAU* Level: "
+        },
+        esp : {
+            starttext: 'Para iniciar el juego, presione: <br> [clic] | [Espacio] | [KeyUP]',
+            gameoverbutton: 'tocar',
+            incDevText: 'Desafortunadamente, el juego no es compatible con este dispositivo. <br> [Tamaño mínimo: 400 x 650]',
+            settings: 'ajustes',
+            newSkinText: 'Nuevo',
+            languagetext: "lengua",
+            styletxt: "apariencia",
+            consoleText: "Hola, soy una consola :) \nBueno que me hayas encontrado. En la consola puedes ver mensajes de error del juego.\n¿Algo anda mal en el juego?  ¿Necesitas ayuda? ¡Entonces puedes ver la información relevante aquí!",
+            BannedMessage: "¡NO PUEDES JUGAR más a este juego porque querías hacer trampa!",
+            BannedMessage1: "¡NO cambie el almacenamiento local! :( \n(¿Realmente lo necesitas?) \n¡Como castigo, ahora todo se reiniciará y jugar será IMPOSIBLE! :)",
+            BannedMessage2: "¡NO cambie el almacenamiento local! :( \n(¿Realmente lo necesitas?) \n¡Como castigo, ahora todo se reiniciará y jugar será IMPOSIBLE! :)",
+            newHighscoreText: "*NUEVO* Highscore: ",
+            newLevelText: "*NOUVEAU* Level: "
+        },
+        che : {
+            starttext: "Ums Spiel z'starte druck: <br> [Klick] | [Leertaste] | [KeyUP]",
+            gameoverbutton: 'Wiiter',
+            incDevText: "s'Spiel isch mit dem Grät leider inkompatibel!<br>[Minimum Grössi: 400 x 650]",
+            settings: 'Iistellige',
+            newSkinText: 'Neu',
+            languagetext: "Sproch",
+            styletxt: "Ussehe",
+            consoleText: "Hallo ich bin ä Konsolä:)\nSchön, dass du mich gefunde hesch. I dä Konsole gsesch du Fehlermeldungen vom Spiel.\nGoht öppis im Spiel nöd? Bruchsch Hilf? Denn chasch du do die entsprechende Informatione finde!",
+            BannedMessage: "Du chasch das Spiel NÜME SPIELE, wel du hesch wölle schummle!",
+            BannedMessage1: "Bitte verändere d'Local Storage NÖD! :( \n(Hesch du das würkli Nötig?) \n Zur Strof wird dir bim nächsten mal ALLES Zruckgsetzt und du chasch s'Spiel NÜM spiele! :)",
+            BannedMessage2: "Verändere d'Local Storage NÖD! :( \n(Hesch du das würkli Nötig?) \n Zur Strof wird dir bim nächsten mal ALLES Zruckgsetzt und du chasch s'Spiel NÜM spiele! :)",
+            newHighscoreText: "*NEUÄ* Highscore: ",
+            newLevelText: "*NEUS* Level: "
+        }
+    };
 
-if(window.location.hash){
-    if(window.location.hash == "#eng"){
+    if(window.location.hash){
+        if(window.location.hash == "#eng"){
+            setSelectedLanguage(eng);
+            setEnglish();
+        }
+        if(window.location.hash == "#deu"){
+            setSelectedLanguage(deu);
+            consoleTextVar = language.deu.consoleText;
+            BannedMessageVar = language.deu.BannedMessage;
+            BannedMessage1Var = language.deu.BannedMessage1;
+            BannedMessage2Var = language.deu.BannedMessage2;
+            newHighscoreTextVar = language.deu.newHighscoreText;
+            newLevelTextVar = language.deu.newLevelText;
+            starttext.innerHTML = language.deu.starttext;
+            gameoverbutton.innerHTML = language.deu.gameoverbutton;
+            incDevText.innerHTML = language.deu.incDevText;
+            settings.innerHTML = language.deu.settings;
+            styletxt.innerHTML = language.deu.styletxt;
+            languagetext.innerHTML = language.deu.languagetext;
+            elements=document.getElementsByClassName("newSkinText");
+            for(var i = 0; i < elements.length; i++){
+                elements[i].innerText=language.deu.newSkinText;
+            }
+        }
+        if(window.location.hash == "#fra"){
+            setSelectedLanguage(fra);
+            consoleTextVar = language.fra.consoleText;
+            BannedMessageVar = language.fra.BannedMessage;
+            BannedMessage1Var = language.fra.BannedMessage1;
+            BannedMessage2Var = language.fra.BannedMessage2;
+            newHighscoreTextVar = language.fra.newHighscoreText;
+            newLevelTextVar = language.fra.newLevelText;
+            starttext.innerHTML = language.fra.starttext;
+            gameoverbutton.innerHTML = language.fra.gameoverbutton;
+            incDevText.innerHTML = language.fra.incDevText;
+            settings.innerHTML = language.fra.settings;
+            styletxt.innerHTML = language.fra.styletxt;
+            languagetext.innerHTML = language.fra.languagetext;
+            elements=document.getElementsByClassName("newSkinText");
+            for(var i = 0; i < elements.length; i++){
+                elements[i].innerText=language.fra.newSkinText;
+            }
+        }
+        if(window.location.hash == "#esp"){
+            setSelectedLanguage(esp);
+            consoleTextVar = language.esp.consoleText;
+            BannedMessageVar = language.esp.BannedMessage;
+            BannedMessage1Var = language.es.BannedMessage1;
+            BannedMessage2Var = language.esp.BannedMessage2;
+            newHighscoreTextVar = language.esp.newHighscoreText;
+            newLevelTextVar = language.esp.newLevelText;
+            starttext.innerHTML = language.esp.starttext;
+            gameoverbutton.innerHTML = language.esp.gameoverbutton;
+            incDevText.innerHTML = language.esp.incDevText;
+            settings.innerHTML = language.esp.settings;
+            styletxt.innerHTML = language.esp.styletxt;
+            languagetext.innerHTML = language.esp.languagetext;
+            elements=document.getElementsByClassName("newSkinText");
+            for(var i = 0; i < elements.length; i++){
+                elements[i].innerText=language.esp.newSkinText;
+            }
+        }
+        if(window.location.hash == "#che"){
+            setSelectedLanguage(che);
+            consoleTextVar = language.che.consoleText;
+            starttext.innerHTML = language.che.starttext;
+            BannedMessageVar = language.che.BannedMessage;
+            BannedMessage1Var = language.che.BannedMessage1;
+            BannedMessage2Var = language.che.BannedMessage2;
+            newHighscoreTextVar = language.che.newHighscoreText;
+            newLevelTextVar = language.che.newLevelText;
+            gameoverbutton.innerHTML = language.che.gameoverbutton;
+            incDevText.innerHTML = language.che.incDevText;
+            settings.innerHTML = language.che.settings;
+            styletxt.innerHTML = language.che.styletxt;
+            languagetext.innerHTML = language.che.languagetext;
+            elements=document.getElementsByClassName("newSkinText");
+            for(var i = 0; i < elements.length; i++){
+                elements[i].innerText=language.che.newSkinText;
+            }
+        }
+    }else{
+        window.location.hash = "#eng";
         setSelectedLanguage(eng);
         setEnglish();
     }
-    if(window.location.hash == "#deu"){
-        setSelectedLanguage(deu);
-        starttext.innerHTML = language.deu.starttext;
-        gameoverbutton.innerHTML = language.deu.gameoverbutton;
-        incDevText.innerHTML = language.deu.incDevText;
-        settings.innerHTML = language.deu.settings;
-        styletxt.innerHTML = language.deu.styletxt;
-        languagetext.innerHTML = language.deu.languagetext;
+
+    function setSelectedLanguage(lang){
+        lang.style.backgroundColor = "black";
+        lang.style.color = "white";
+    }
+    function setEnglish(){
+        consoleTextVar = language.eng.consoleText;
+        starttext.innerHTML = language.eng.starttext;
+        BannedMessageVar = language.eng.BannedMessage;
+        BannedMessage1Var = language.eng.BannedMessage1;
+        BannedMessage2Var = language.eng.BannedMessage2;
+        newHighscoreTextVar = language.eng.newHighscoreText;
+        newLevelTextVar = language.eng.newLevelText;
+        gameoverbutton.innerHTML = language.eng.gameoverbutton
+        incDevText.innerHTML = language.eng.incDevText;
+        settings.innerHTML = language.eng.settings;
+        styletxt.innerHTML = language.eng.styletxt;
+        languagetext.innerHTML = language.eng.languagetext;
         elements=document.getElementsByClassName("newSkinText");
         for(var i = 0; i < elements.length; i++){
-            elements[i].innerText=language.deu.newSkinText;
+            elements[i].innerText=language.eng.newSkinText;
         }
     }
-    if(window.location.hash == "#fra"){
-        setSelectedLanguage(fra);
-        starttext.innerHTML = language.fra.starttext;
-        gameoverbutton.innerHTML = language.fra.gameoverbutton;
-        incDevText.innerHTML = language.fra.incDevText;
-        settings.innerHTML = language.fra.settings;
-        styletxt.innerHTML = language.fra.styletxt;
-        languagetext.innerHTML = language.fra.languagetext;
-        elements=document.getElementsByClassName("newSkinText");
-        for(var i = 0; i < elements.length; i++){
-            elements[i].innerText=language.fra.newSkinText;
-        }
-    }
-    if(window.location.hash == "#esp"){
-        setSelectedLanguage(esp);
-        starttext.innerHTML = language.esp.starttext;
-        gameoverbutton.innerHTML = language.esp.gameoverbutton;
-        incDevText.innerHTML = language.esp.incDevText;
-        settings.innerHTML = language.esp.settings;
-        styletxt.innerHTML = language.esp.styletxt;
-        languagetext.innerHTML = language.esp.languagetext;
-        elements=document.getElementsByClassName("newSkinText");
-        for(var i = 0; i < elements.length; i++){
-            elements[i].innerText=language.esp.newSkinText;
-        }
-    }
-    if(window.location.hash == "#che"){
-        setSelectedLanguage(che);
-        starttext.innerHTML = language.che.starttext;
-        gameoverbutton.innerHTML = language.che.gameoverbutton;
-        incDevText.innerHTML = language.che.incDevText;
-        settings.innerHTML = language.che.settings;
-        styletxt.innerHTML = language.che.styletxt;
-        languagetext.innerHTML = language.che.languagetext;
-        elements=document.getElementsByClassName("newSkinText");
-        for(var i = 0; i < elements.length; i++){
-            elements[i].innerText=language.che.newSkinText;
-        }
-    }
-}else{
-    setSelectedLanguage(eng);
-    setEnglish();
-}
 
-function setSelectedLanguage(language){
-    language.style.backgroundColor = "black";
-    language.style.color = "white";
-}
-function setEnglish(){
-    starttext.innerHTML = language.eng.starttext;
-    gameoverbutton.innerHTML = language.eng.gameoverbutton
-    incDevText.innerHTML = language.eng.incDevText;
-    settings.innerHTML = language.eng.settings;
-    styletxt.innerHTML = language.eng.styletxt;
-    languagetext.innerHTML = language.eng.languagetext;
-    elements=document.getElementsByClassName("newSkinText");
-    for(var i = 0; i < elements.length; i++){
-        elements[i].innerText=language.eng.newSkinText;
-    }
-}
-
-var dataReload = document.querySelectorAll("[data-reload]");
+    var dataReload = document.querySelectorAll("[data-reload]");
 
 
-for(i = 0; i <= dataReload.length; i++){
-    if(dataReload[i] != undefined){
-        dataReload[i].onclick = function(){
-            setTimeout(function() {
-                location.reload();
-            }, 100);
+    for(i = 0; i <= dataReload.length; i++){
+        if(dataReload[i] != undefined){
+            dataReload[i].onclick = function(){
+                setTimeout(function() {
+                    location.reload();
+                }, 100);
+            }
         }
     }
 }
