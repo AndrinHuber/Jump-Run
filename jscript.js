@@ -1,4 +1,5 @@
 var gameDiv = document.getElementById("game");
+var game3d = document.getElementById("game3d");
 var character = document.getElementById("character");
 var block = document.getElementById("block1");
 var block2 = document.getElementById("block2");
@@ -14,7 +15,9 @@ var Texthighscore = document.getElementById("highscoreText");
 var gameOver = document.getElementById("gameOver");
 var gameOver3d = document.getElementById("gameOver3d");
 var gameoverbutton = document.getElementById("gameoverbutton");
+var gameoverbutton3d = document.getElementById("gameoverbutton3d");
 var levelBar = document.getElementById("levelBar");
+var levelBar3d = document.getElementById("levelbar3d");
 var levelText = document.getElementById("levelText");
 var percentagetext = document.getElementById("percentagetext");
 var cloudholder = document.getElementById("cloudholder");
@@ -46,6 +49,8 @@ var languagetext = document.getElementById("languagetext");
 var styletxt = document.getElementById("styletxt");
 var darkMode = document.getElementById("darkMode");
 var standartMode = document.getElementById("standartMode");
+var incompatibleDevice = document.getElementById("incompatibleDevice");
+var incDevText = document.getElementById("incDevText");
 var deu = document.getElementById("deu");
 var eng = document.getElementById("eng");
 var fra = document.getElementById("fra");
@@ -144,9 +149,65 @@ function checkifAdBlock(){
 function checkMode(){
     if(localStorage.getItem('mode') == 'standartMode'){
         document.body.style.backgroundColor = "lightpink";
+        gameDiv.style.backgroundColor = "lightskyblue";
+        gameDiv.style.borderColor = "black";
+        game3d.style.backgroundColor = "#FED766";
+        game3d.style.borderColor = "black";
+        levelText.style.color = "black";
+        levelBar3d.style.borderColor = "black";
+        levelBar3d.style.backgroundColor = "#FED766";
+        gameOver.style.borderColor = "black";
+        gameOver.style.backgroundColor = "#fe6666";
+        gameOver3d.style.borderColor = "black";
+        gameOver3d.style.backgroundColor = "#FED766";
+        gameoverbutton.style.backgroundColor = "lightgreen";
+        gameoverbutton.style.borderColor = "black";
+        gameoverbutton.style.color = "black";
+        gameoverbutton3d.style.backgroundColor = "#FED766";
+        gameoverbutton3d.style.borderColor = "black";
+        incompatibleDevice.style.backgroundColor = "white";
+        incDevText.style.color = "black";
+        settingbutton.style.backgroundColor = "lightgreen";
+        settingbutton.style.borderColor = "black";
+        homebutton.style.backgroundColor = "lightgreen";
+        homebutton.style.borderColor = "black";
+        hometab.style.borderColor = "black";
+        settingstab.style.borderColor = "black";
+        hometab3d.style.borderColor = "black";
+        hometab3d.style.backgroundColor = "#FED766";
+        settingstab3d.style.borderColor = "black";
+        settingstab3d.style.backgroundColor = "#FED766";
     }
     if(localStorage.getItem('mode') == 'darkMode'){
-        document.body.style.backgroundColor = "black";
+        document.body.style.backgroundColor = "#121212";
+        gameDiv.style.backgroundColor = "#282828";
+        gameDiv.style.borderColor = "white";
+        game3d.style.backgroundColor = "#404040";
+        game3d.style.borderColor = "white";
+        levelText.style.color = "white";
+        levelBar3d.style.borderColor = "white";
+        levelBar3d.style.backgroundColor = "#404040";
+        gameOver.style.borderColor = "white";
+        gameOver.style.backgroundColor = "#b3b3b3";
+        gameOver3d.style.borderColor = "white";
+        gameOver3d.style.backgroundColor = "#404040";
+        gameoverbutton.style.backgroundColor = "#282828";
+        gameoverbutton.style.borderColor = "white";
+        gameoverbutton.style.color = "white";
+        gameoverbutton3d.style.backgroundColor = "#404040";
+        gameoverbutton3d.style.borderColor = "white";
+        incompatibleDevice.style.backgroundColor = "black";
+        incDevText.style.color = "white";
+        settingbutton.style.backgroundColor = "#b3b3b3";
+        settingbutton.style.borderColor = "white";
+        homebutton.style.backgroundColor = "#b3b3b3";
+        homebutton.style.borderColor = "white";
+        hometab.style.borderColor = "white";
+        settingstab.style.borderColor = "white";
+        hometab3d.style.borderColor = "white";
+        hometab3d.style.backgroundColor = "#404040";
+        settingstab3d.style.borderColor = "white";
+        settingstab3d.style.backgroundColor = "#404040";
     }
 }
 
