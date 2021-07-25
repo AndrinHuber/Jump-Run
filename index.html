@@ -14,9 +14,9 @@
 <body>
     <div id="buttonholder">
         <div id="buttondiv">
-            <button class="buttons" id="settingbutton" onclick="settingsClick();"><i class="material-icons buttonicons">settings</i></button>
+            <button class="buttons" id="settingbutton" onclick="settingsClick();"><i class="material-icons buttonicons" id="settingsbuttonIcon">settings</i></button>
             <div id="newSkinIsAvailable"></div>
-            <button class="buttons" id="homebutton" onclick="homeClick();"><i class="material-icons buttonicons">face</i></button>
+            <button class="buttons" id="homebutton" onclick="homeClick();"><i class="material-icons buttonicons" id="skinbuttonIcon">face</i></button>
         </div>
     </div>
     <div id="levelDivHolder">
@@ -34,7 +34,7 @@
             <div id="incDevText">Das Spiel ist mit diesem Gerät leider inkompatibel!<br>[Minimum Grösse: 400 x 650]</div>
         </div>
         <div id="hometab">
-            <div class="buttonDiv"><div class="buttonDivtext">Skins</div><div class="buttonDivbutton" onclick="homeClick()"><i class="material-icons buttonicons">clear</i></div></div>
+            <div class="buttonDiv" id="buttonDivSkins"><div class="buttonDivtext">Skins</div><div class="buttonDivbutton" onclick="homeClick()"><i class="material-icons buttonicons">clear</i></div></div>
             <div id="skintabtabflex">
                 <div class="divwrapper">
                     <div id="giraffenewSkin" class="newSkin"><div class="newSkinText">Neu</div></div>
@@ -63,38 +63,14 @@
                 <div class="divwrapper">
                     <div class="newSkin"><div class="newSkinText">Neu</div></div>
                     <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
-                    <div class="skinNameText">unknown</div>
-                </div>
-                <div class="divwrapper">
-                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
-                    <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
-                    <div class="skinNameText">unknown</div>
-                </div>
-                <div class="divwrapper">
-                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
-                    <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
-                    <div class="skinNameText">unknown</div>
-                </div>
-                <div class="divwrapper">
-                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
-                    <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
-                    <div class="skinNameText">unknown</div>
-                </div>
-                <div class="divwrapper">
-                    <div class="newSkin"><div class="newSkinText">Neu</div></div>
-                    <div class="skindiv"></div>
-                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level:</div></div>
-                    <div class="skinNameText">unknown</div>
+                    <div class="lockedDiv"><i class="material-icons lockskinicon">lock</i><div>Level: 10</div></div>
+                    <div class="skinNameText">Comming soon</div>
                 </div>
             </div>
         </div>
         <div id="hometab3d"></div>
         <div id="settingstab">
-            <div class="buttonDiv"><div class="buttonDivtext" id="settings">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
+            <div class="buttonDiv" id="buttonDivSettings"><div class="buttonDivtext" id="settings">Settings</div><div class="buttonDivbutton" onclick="settingsClick()"><i class="material-icons buttonicons">clear</i></div></div>
             <div id="settingstabflex">
                 <div class="settingsText" id="languagetext">Language</div>
                 <div class="einstellungsdiv" id="languageDiv">
@@ -106,8 +82,28 @@
                 </div>
                 <div class="settingsText" id="styletxt">Style</div>
                 <div class="einstellungsdiv" id="colorDiv">
-                    <div class="styleDiv" id="standartMode" onclick="standart();">Standart</div>
-                    <div class="styleDiv" id="darkMode" onclick="dark();">DARK</div>
+                    <div class="styleDiv" id="standartMode" onclick="standart();">
+                        Standart
+                        <div class="colors" style="background-color: black;"></div>
+                        <div class="colors" style="background-color: #FED766;"></div>
+                        <div class="colors" style="background-color: lightgreen;"></div>
+                        <div class="colors" style="background-color: lightpink;"></div>
+                        <div class="colors" style="background-color: white;"></div>
+                        <div class="colors" style="background-color: lightskyblue;"></div>
+                        <div class="colors" style="background-color: #fe6666;"></div>
+                    </div>
+                    <div class="styleDiv" id="darkMode" onclick="dark();">
+                        Dark
+                        <div class="colors" style="background-color: white;"></div>
+                        <div class="colors" style="background-color: #404040;"></div>
+                        <div class="colors" style="background-color: #b3b3b3;"></div>
+                        <div class="colors" style="background-color: #121212;"></div>
+                        <div class="colors" style="background-color: black;"></div>
+                        <div class="colors" style="background-color: #282828; margin-bottom: -1px;"></div>
+                    </div>
+                    <div class="styleDiv">
+                        Comming soon
+                    </div>
                 </div>
             </div>
         </div>

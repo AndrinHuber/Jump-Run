@@ -49,8 +49,13 @@ var languagetext = document.getElementById("languagetext");
 var styletxt = document.getElementById("styletxt");
 var darkMode = document.getElementById("darkMode");
 var standartMode = document.getElementById("standartMode");
+var lgbtqMode = document.getElementById("lgbtqMode");
 var incompatibleDevice = document.getElementById("incompatibleDevice");
 var incDevText = document.getElementById("incDevText");
+var buttonDivSkins = document.getElementById("buttonDivSkins");
+var buttonDivSettings = document.getElementById("buttonDivSettings");
+var settingsbuttonIcon = document.getElementById("settingsbuttonIcon");
+var skinbuttonIcon = document.getElementById("skinbuttonIcon");
 var deu = document.getElementById("deu");
 var eng = document.getElementById("eng");
 var fra = document.getElementById("fra");
@@ -121,6 +126,7 @@ var BannedMessage1Var;
 var BannedMessage2Var;
 var newHighscoreTextVar;
 var newLevelTextVar;
+const today = new Date();
 setLanguage();
 console.log(consoleTextVar);
 checkSkin();
@@ -140,74 +146,95 @@ function checkStatusSkins(){
 
 function checkifAdBlock(){
     if( document.getElementById('PR44EPxgRGrsoVe') ){
-        console.log('Es ist kein AdBlocker aktiv!');
+        console.log('AdBlock INACTIVE!');
       } else {
-        console.log('AdBlocker ist aktiv und Werbung wird blockiert!');
+        console.log('AdBlocker ACTIVE!');
       }
 }
 
 function checkMode(){
     if(localStorage.getItem('mode') == 'standartMode'){
-        document.body.style.backgroundColor = "lightpink";
-        gameDiv.style.backgroundColor = "lightskyblue";
-        gameDiv.style.borderColor = "black";
-        game3d.style.backgroundColor = "#FED766";
-        game3d.style.borderColor = "black";
-        levelText.style.color = "black";
-        levelBar3d.style.borderColor = "black";
-        levelBar3d.style.backgroundColor = "#FED766";
-        gameOver.style.borderColor = "black";
-        gameOver.style.backgroundColor = "#fe6666";
-        gameOver3d.style.borderColor = "black";
-        gameOver3d.style.backgroundColor = "#FED766";
-        gameoverbutton.style.backgroundColor = "lightgreen";
-        gameoverbutton.style.borderColor = "black";
-        gameoverbutton.style.color = "black";
-        gameoverbutton3d.style.backgroundColor = "#FED766";
-        gameoverbutton3d.style.borderColor = "black";
-        incompatibleDevice.style.backgroundColor = "white";
-        incDevText.style.color = "black";
-        settingbutton.style.backgroundColor = "lightgreen";
-        settingbutton.style.borderColor = "black";
-        homebutton.style.backgroundColor = "lightgreen";
-        homebutton.style.borderColor = "black";
-        hometab.style.borderColor = "black";
-        settingstab.style.borderColor = "black";
-        hometab3d.style.borderColor = "black";
-        hometab3d.style.backgroundColor = "#FED766";
-        settingstab3d.style.borderColor = "black";
-        settingstab3d.style.backgroundColor = "#FED766";
+        var C1 = "black";
+        var C2 = "#FED766";
+        var C3 = "lightgreen";
+        var C4 = "lightpink";
+        var C5 = "white";
+        var C6 = "lightskyblue";
+        var C7 = "#fe6666";
+        incDevText.style.color = C1;
+        game3d.style.borderColor = C1;
+        gameDiv.style.borderColor = C1;
+        levelText.style.color = C1;
+        levelBar3d.style.borderColor = C1;
+        gameOver.style.borderColor = C1;
+        gameOver3d.style.borderColor = C1;
+        buttonDivSkins.style.borderColor = C1;
+        buttonDivSettings.style.borderColor = C1;
+        settingsbuttonIcon.style.color = C1;
+        skinbuttonIcon.style.color = C1;
+        settingstab3d.style.borderColor = C1;
+        homebutton.style.borderColor = C1;
+        hometab.style.borderColor = C1;
+        settingstab.style.borderColor = C1;
+        hometab3d.style.borderColor = C1;
+        settingbutton.style.borderColor = C1;
+        gameoverbutton3d.style.borderColor = C1;
+        gameoverbutton.style.borderColor = C1;
+        gameoverbutton.style.color = C1;
+        game3d.style.backgroundColor = C2;
+        hometab3d.style.backgroundColor = C2;
+        levelBar3d.style.backgroundColor = C2;
+        gameOver3d.style.backgroundColor = C2;
+        settingstab3d.style.backgroundColor = C2;
+        gameoverbutton3d.style.backgroundColor = C2;
+        homebutton.style.backgroundColor = C3;
+        settingbutton.style.backgroundColor = C3;
+        gameoverbutton.style.backgroundColor = C3;
+        document.body.style.backgroundColor = C4;
+        incompatibleDevice.style.backgroundColor = C5;
+        gameDiv.style.backgroundColor = C6;
+        gameOver.style.backgroundColor = C7;
     }
     if(localStorage.getItem('mode') == 'darkMode'){
-        document.body.style.backgroundColor = "#121212";
-        gameDiv.style.backgroundColor = "#282828";
-        gameDiv.style.borderColor = "white";
-        game3d.style.backgroundColor = "#404040";
-        game3d.style.borderColor = "white";
-        levelText.style.color = "white";
-        levelBar3d.style.borderColor = "white";
-        levelBar3d.style.backgroundColor = "#404040";
-        gameOver.style.borderColor = "white";
-        gameOver.style.backgroundColor = "#b3b3b3";
-        gameOver3d.style.borderColor = "white";
-        gameOver3d.style.backgroundColor = "#404040";
-        gameoverbutton.style.backgroundColor = "#282828";
-        gameoverbutton.style.borderColor = "white";
-        gameoverbutton.style.color = "white";
-        gameoverbutton3d.style.backgroundColor = "#404040";
-        gameoverbutton3d.style.borderColor = "white";
-        incompatibleDevice.style.backgroundColor = "black";
-        incDevText.style.color = "white";
-        settingbutton.style.backgroundColor = "#b3b3b3";
-        settingbutton.style.borderColor = "white";
-        homebutton.style.backgroundColor = "#b3b3b3";
-        homebutton.style.borderColor = "white";
-        hometab.style.borderColor = "white";
-        settingstab.style.borderColor = "white";
-        hometab3d.style.borderColor = "white";
-        hometab3d.style.backgroundColor = "#404040";
-        settingstab3d.style.borderColor = "white";
-        settingstab3d.style.backgroundColor = "#404040";
+        var C1 = "white";
+        var C2 = "#404040";
+        var C3 = "#b3b3b3";
+        var C4 = "#121212";
+        var C5 = "black";
+        var C6 = "#282828";
+        incDevText.style.color = C1;
+        game3d.style.borderColor = C1;
+        gameDiv.style.borderColor = C1;
+        levelText.style.color = C1;
+        levelBar3d.style.borderColor = C1;
+        gameOver.style.borderColor = C1;
+        gameOver3d.style.borderColor = C1;
+        buttonDivSkins.style.borderColor = C1;
+        buttonDivSettings.style.borderColor = C1;
+        settingsbuttonIcon.style.color = C1;
+        skinbuttonIcon.style.color = C1;
+        settingstab3d.style.borderColor = C1;
+        homebutton.style.borderColor = C1;
+        hometab.style.borderColor = C1;
+        settingstab.style.borderColor = C1;
+        hometab3d.style.borderColor = C1;
+        settingbutton.style.borderColor = C1;
+        gameoverbutton3d.style.borderColor = C1;
+        gameoverbutton.style.borderColor = C1;
+        gameoverbutton.style.color = C1;
+        game3d.style.backgroundColor = C2;
+        hometab3d.style.backgroundColor = C2;
+        levelBar3d.style.backgroundColor = C2;
+        gameOver3d.style.backgroundColor = C2;
+        settingstab3d.style.backgroundColor = C2;
+        gameoverbutton3d.style.backgroundColor = C2;
+        gameOver.style.backgroundColor = C3;
+        homebutton.style.backgroundColor = C3;
+        settingbutton.style.backgroundColor = C3;
+        gameoverbutton.style.backgroundColor = C3;
+        document.body.style.backgroundColor = C4;
+        incompatibleDevice.style.backgroundColor = C5;
+        gameDiv.style.backgroundColor = C6;
     }
 }
 
@@ -627,10 +654,10 @@ function setLanguage(){
             newSkinText: 'Nouveau',
             languagetext: "Langue",
             styletxt: "Style",
-            consoleText: "Bonjour, je suis une console :) \nBon que vous m'ayez trouvé. Dans la console, vous pouvez voir les messages d'erreur du jeu.\nQuelque chose ne va pas dans le jeu ? As-tu besoin d'aide? Alors vous pouvez voir les informations pertinentes ici!",
+            consoleText: "Bonjour, je suis une console :) \nBon que vous m'ayez trouvé. Dans la console, vous pouvez voir les messages d'erreur du jeu.\nQuelque chose ne va pas dans le jeu? As-tu besoin d'aide? Alors vous pouvez voir les informations pertinentes ici!",
             BannedMessage: "Vous NE POUVEZ PLUS JOUER à ce jeu parce que vous vouliez tricher !",
-            BannedMessage1: "Veuillez NE PAS modifier le stockage local ! :( \n(Avez-vous vraiment besoin de ça ?) \nEn guise de punition, TOUT sera réinitialisé la prochaine fois et vous NE POUVEZ PLUS jouer au jeu ! :)",
-            BannedMessage2: "NE PAS modifier le stockage local ! :( \n(Avez-vous vraiment besoin de ça ?) \nEn guise de punition, tout sera désormais réinitialisé et le jeu deviendra IMPOSSIBLE ! :)",
+            BannedMessage1: "Veuillez NE PAS modifier le stockage local ! :( \n(Avez-vous vraiment besoin de ça?) \nEn guise de punition, TOUT sera réinitialisé la prochaine fois et vous NE POUVEZ PLUS jouer au jeu ! :)",
+            BannedMessage2: "NE PAS modifier le stockage local ! :( \n(Avez-vous vraiment besoin de ça?) \nEn guise de punition, tout sera désormais réinitialisé et le jeu deviendra IMPOSSIBLE ! :)",
             newHighscoreText: "*NOUVEAU* Highscore: ",
             newLevelText: "*NOUVEAU* Level: "
         },
@@ -713,7 +740,7 @@ function setLanguage(){
             setSelectedLanguage(esp);
             consoleTextVar = language.esp.consoleText;
             BannedMessageVar = language.esp.BannedMessage;
-            BannedMessage1Var = language.es.BannedMessage1;
+            BannedMessage1Var = language.esp.BannedMessage1;
             BannedMessage2Var = language.esp.BannedMessage2;
             newHighscoreTextVar = language.esp.newHighscoreText;
             newLevelTextVar = language.esp.newLevelText;
@@ -777,7 +804,6 @@ function setLanguage(){
     }
 
     var dataReload = document.querySelectorAll("[data-reload]");
-
 
     for(i = 0; i <= dataReload.length; i++){
         if(dataReload[i] != undefined){

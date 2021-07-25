@@ -180,7 +180,7 @@ progress::-webkit-progress-value {
     cursor: pointer;
 }
 #gameoverbutton3d{
-    margin-top: 148px;
+    margin-top: 145px;
     position: fixed;
     width: 74px;
     height: 29px;
@@ -315,7 +315,7 @@ progress::-webkit-progress-value {
     position: relative;
     height: 50px;
     width: 1000px;
-    top: 217px;
+    top: 215px;
     left:1000px;
     animation: grass2 2.5s infinite linear;
 }
@@ -352,12 +352,6 @@ progress::-webkit-progress-value {
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-#settingbutton{
-
-}
-#homebutton{
-
 }
 .buttons{
     z-index: 9999;
@@ -475,6 +469,7 @@ progress::-webkit-progress-value {
 #skintabtabflex{
     position: absolute;
     margin-top: 80px;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -602,8 +597,16 @@ progress::-webkit-progress-value {
     border-radius: 5px;
     width: 100px;
     height: 100px;
-    background-color: whitesmoke;
+    background-color: transparent;
     border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.colors{
+    width: 100%;
+    height: 20px;
 }
 .styleDiv:hover{
     animation: skin .1s linear;
