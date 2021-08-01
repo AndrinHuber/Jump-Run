@@ -56,6 +56,13 @@ var buttonDivSkins = document.getElementById("buttonDivSkins");
 var buttonDivSettings = document.getElementById("buttonDivSettings");
 var settingsbuttonIcon = document.getElementById("settingsbuttonIcon");
 var skinbuttonIcon = document.getElementById("skinbuttonIcon");
+var standartMode = document.getElementById("standartMode");
+var darkMode = document.getElementById("darkMode");
+var style1Mode = document.getElementById("style1Mode");
+var style2Mode = document.getElementById("style2Mode");
+var style3Mode = document.getElementById("style3Mode");
+var style4Mode = document.getElementById("style4Mode");
+var style5Mode = document.getElementById("style5Mode");
 var deu = document.getElementById("deu");
 var eng = document.getElementById("eng");
 var fra = document.getElementById("fra");
@@ -116,6 +123,13 @@ var giraffelevel = 0;
 var pinguinlevel = 2;
 var bunnylevel = 5;
 var chickenlevel = 7;
+var C1;
+var C2;
+var C3;
+var C4;
+var C5;
+var C6;
+var C7;
 pinguinleveltext.innerHTML = "Level: " + pinguinlevel;
 giraffeleveltext.innerHTML = "Level: " + giraffelevel;
 bunnyleveltext.innerHTML = "Level: " + bunnylevel;
@@ -127,12 +141,11 @@ var BannedMessage2Var;
 var newHighscoreTextVar;
 var newLevelTextVar;
 const today = new Date();
+checkMode();
 setLanguage();
-console.log(consoleTextVar);
 checkSkin();
 checkStatusSkins();
-checkifaSkinIsNew();
-checkMode();
+console.log(consoleTextVar);
 checkifAdBlock();
 //checkifBanned();
 
@@ -152,100 +165,128 @@ function checkifAdBlock(){
       }
 }
 
+function colorSet(name){
+    localStorage.setItem('mode', name + 'Mode');
+    checkMode();
+}
+
 function checkMode(){
     if(localStorage.getItem('mode') == 'standartMode'){
-        var C1 = "black";
-        var C2 = "#FED766";
-        var C3 = "lightgreen";
-        var C4 = "lightpink";
-        var C5 = "white";
-        var C6 = "lightskyblue";
-        var C7 = "#fe6666";
-        incDevText.style.color = C1;
-        game3d.style.borderColor = C1;
-        gameDiv.style.borderColor = C1;
-        levelText.style.color = C1;
-        levelBar3d.style.borderColor = C1;
-        gameOver.style.borderColor = C1;
-        gameOver3d.style.borderColor = C1;
-        buttonDivSkins.style.borderColor = C1;
-        buttonDivSettings.style.borderColor = C1;
-        settingsbuttonIcon.style.color = C1;
-        skinbuttonIcon.style.color = C1;
-        settingstab3d.style.borderColor = C1;
-        homebutton.style.borderColor = C1;
-        hometab.style.borderColor = C1;
-        settingstab.style.borderColor = C1;
-        hometab3d.style.borderColor = C1;
-        settingbutton.style.borderColor = C1;
-        gameoverbutton3d.style.borderColor = C1;
-        gameoverbutton.style.borderColor = C1;
-        gameoverbutton.style.color = C1;
-        game3d.style.backgroundColor = C2;
-        hometab3d.style.backgroundColor = C2;
-        levelBar3d.style.backgroundColor = C2;
-        gameOver3d.style.backgroundColor = C2;
-        settingstab3d.style.backgroundColor = C2;
-        gameoverbutton3d.style.backgroundColor = C2;
-        homebutton.style.backgroundColor = C3;
-        settingbutton.style.backgroundColor = C3;
-        gameoverbutton.style.backgroundColor = C3;
-        document.body.style.backgroundColor = C4;
-        incompatibleDevice.style.backgroundColor = C5;
-        gameDiv.style.backgroundColor = C6;
-        gameOver.style.backgroundColor = C7;
+        C1 = "black";
+        C2 = "#FED766";
+        C3 = "lightgreen";
+        C4 = "lightpink";
+        C5 = "white";
+        C6 = "lightskyblue";
+        C7 = "#fe6666";
+        setColors(standartMode);
     }
     if(localStorage.getItem('mode') == 'darkMode'){
-        var C1 = "white";
-        var C2 = "#404040";
-        var C3 = "#b3b3b3";
-        var C4 = "#121212";
-        var C5 = "black";
-        var C6 = "#282828";
-        incDevText.style.color = C1;
-        game3d.style.borderColor = C1;
-        gameDiv.style.borderColor = C1;
-        levelText.style.color = C1;
-        levelBar3d.style.borderColor = C1;
-        gameOver.style.borderColor = C1;
-        gameOver3d.style.borderColor = C1;
-        buttonDivSkins.style.borderColor = C1;
-        buttonDivSettings.style.borderColor = C1;
-        settingsbuttonIcon.style.color = C1;
-        skinbuttonIcon.style.color = C1;
-        settingstab3d.style.borderColor = C1;
-        homebutton.style.borderColor = C1;
-        hometab.style.borderColor = C1;
-        settingstab.style.borderColor = C1;
-        hometab3d.style.borderColor = C1;
-        settingbutton.style.borderColor = C1;
-        gameoverbutton3d.style.borderColor = C1;
-        gameoverbutton.style.borderColor = C1;
-        gameoverbutton.style.color = C1;
-        game3d.style.backgroundColor = C2;
-        hometab3d.style.backgroundColor = C2;
-        levelBar3d.style.backgroundColor = C2;
-        gameOver3d.style.backgroundColor = C2;
-        settingstab3d.style.backgroundColor = C2;
-        gameoverbutton3d.style.backgroundColor = C2;
-        gameOver.style.backgroundColor = C3;
-        homebutton.style.backgroundColor = C3;
-        settingbutton.style.backgroundColor = C3;
-        gameoverbutton.style.backgroundColor = C3;
-        document.body.style.backgroundColor = C4;
-        incompatibleDevice.style.backgroundColor = C5;
-        gameDiv.style.backgroundColor = C6;
+        C1 = "white";
+        C2 = "#404040";
+        C3 = "#b3b3b3";
+        C4 = "#121212";
+        C5 = "black";
+        C7 = "lightgrey";
+        setColors(darkMode);
+    }
+    if(localStorage.getItem('mode') == 'style1Mode'){
+        C1 = "black";
+        C2 = "#DD5E98";
+        C3 = "#7EA3CC";
+        C4 = "#ED9B40";
+        C5 = "white";
+        C7 = "#04A777";
+        setColors(style1Mode);
+    }
+    if(localStorage.getItem('mode') == 'style2Mode'){
+        C1 = "black";
+        C2 = "#C3D350";
+        C3 = "#E6F14A";
+        C4 = "#84A07C";
+        C5 = "white";
+        C7 = "#317B22";
+        setColors(style2Mode);
+    }
+    if(localStorage.getItem('mode') == 'style3Mode'){
+        C1 = "black";
+        C2 = "#EE8434";
+        C3 = "#717EC3";
+        C4 = "#C95D63";
+        C5 = "white";
+        C7 = "#496DDB";
+        setColors(style3Mode);
+    }
+    if(localStorage.getItem('mode') == 'style4Mode'){
+        C1 = "black";
+        C2 = "#F2BAC9";
+        C3 = "#BAD7F2";
+        C4 = "#BAF2E9";
+        C5 = "white";
+        C7 = "#B0F2B4";
+        setColors(style4Mode);
+    }
+    if(localStorage.getItem('mode') == 'style5Mode'){
+        C1 = "black";
+        C2 = "#392F5A";
+        C3 = "#EEC8E0";
+        C4 = "#FFAFF0";
+        C5 = "white";
+        C7 = "#F092DD";
+        setColors(style5Mode);
     }
 }
-
-function standart(){
-    localStorage.setItem('mode', 'standartMode');
-    checkMode();
-}
-
-function dark(){
-    localStorage.setItem('mode', 'darkMode');
-    checkMode();
+function setColors(mode){
+    checkStatusSkins()
+    standartMode.style.borderColor = "black";
+    darkMode.style.borderColor = "black";
+    style1Mode.style.borderColor = "black";
+    style2Mode.style.borderColor = "black";
+    style3Mode.style.borderColor = "black";
+    style4Mode.style.borderColor = "black";
+    style5Mode.style.borderColor = "black";
+    standartMode.style.transform = "scale(1.0)";
+    darkMode.style.transform = "scale(1.0)";
+    style1Mode.style.transform = "scale(1.0)";
+    style2Mode.style.transform = "scale(1.0)";
+    style3Mode.style.transform = "scale(1.0)";
+    style4Mode.style.transform = "scale(1.0)";
+    style5Mode.style.transform = "scale(1.0)";
+    mode.style.borderColor = "white";
+    mode.style.transform = "scale(1.1)";
+    incDevText.style.color = C1;
+    game3d.style.borderColor = C1;
+    gameDiv.style.borderColor = C1;
+    levelText.style.color = C1;
+    levelBar3d.style.borderColor = C1;
+    gameOver.style.borderColor = C1;
+    gameOver3d.style.borderColor = C1;
+    buttonDivSkins.style.borderColor = C1;
+    buttonDivSettings.style.borderColor = C1;
+    settingsbuttonIcon.style.color = C1;
+    skinbuttonIcon.style.color = C1;
+    settingstab3d.style.borderColor = C1;
+    homebutton.style.borderColor = C1;
+    hometab.style.borderColor = C1;
+    settingstab.style.borderColor = C1;
+    hometab3d.style.borderColor = C1;
+    settingbutton.style.borderColor = C1;
+    gameoverbutton3d.style.borderColor = C1;
+    gameoverbutton.style.borderColor = C1;
+    gameoverbutton.style.color = C1;
+    game3d.style.backgroundColor = C2;
+    hometab3d.style.backgroundColor = C2;
+    levelBar3d.style.backgroundColor = C2;
+    gameOver3d.style.backgroundColor = C2;
+    settingstab3d.style.backgroundColor = C2;
+    gameoverbutton3d.style.backgroundColor = C2;
+    homebutton.style.backgroundColor = C3;
+    settingbutton.style.backgroundColor = C3;
+    gameoverbutton.style.backgroundColor = C3;
+    document.body.style.backgroundColor = C4;
+    incompatibleDevice.style.backgroundColor = C5;
+    gameDiv.style.backgroundColor = C6;
+    gameOver.style.backgroundColor = C7;
 }
 
 function checkifaSkinIsNew(){
@@ -474,38 +515,49 @@ function checkifLocked(Skin){
     if(Skin == 'giraffe' && localStorage.getItem('level') >= giraffelevel){
         skinGiraffelocked.style.visibility = "hidden";
         if(characterPic.src.includes("giraffe") == true){
-            giraffeskinDiv.style.backgroundColor = "lightpink";
-        }
-        if((localStorage.getItem('level') - giraffelevel) == 0 && giraffeskinDiv.style.backgroundColor != "lightpink"){
-            giraffenewSkin.style.display = "block";
+            giraffeskinDiv.style.backgroundColor = C4;
         }
     }
     if(Skin == 'pinguin' && localStorage.getItem('level') >= pinguinlevel){
         skinPinguinlocked.style.visibility = "hidden";
         if(characterPic.src.includes("pinguin") == true){
-            pinguinskinDiv.style.backgroundColor = "lightpink";
-        }
-        if((localStorage.getItem('level') - pinguinlevel) == 0  && pinguinskinDiv.style.backgroundColor != "lightpink"){
-            pinguinnewSkin.style.display = "block";
+            pinguinskinDiv.style.backgroundColor = C4;
         }
     }
     if(Skin == 'bunny' && localStorage.getItem('level') >= bunnylevel){
         skinBunnylocked.style.visibility = "hidden";
         if(characterPic.src.includes("bunny") == true){
-            bunnyskinDiv.style.backgroundColor = "lightpink";
-        }
-        if((localStorage.getItem('level') - bunnylevel) == 0  && bunnyskinDiv.style.backgroundColor != "lightpink"){
-            bunnynewSkin.style.display = "block";
+            bunnyskinDiv.style.backgroundColor = C4;
         }
     }
     if(Skin == 'chicken' && localStorage.getItem('level') >= chickenlevel){
         skinChickenlocked.style.visibility = "hidden";
         if(characterPic.src.includes("chicken") == true){
-            chickenskinDiv.style.backgroundColor = "lightpink";
+            chickenskinDiv.style.backgroundColor = C4;
         }
-        if((localStorage.getItem('level') - chickenlevel) == 0 && chickenskinDiv.style.backgroundColor != "lightpink"){
-            chickennewSkin.style.display = "block";
-        }
+    }
+}
+
+function skincouldBeNew(){
+    if((localStorage.getItem('level') - giraffelevel) == 0 && characterPic.src.includes("giraffe") == false){
+        giraffenewSkin.style.display = "block";
+    }else{
+        giraffenewSkin.style.display = "none";
+    }
+    if((localStorage.getItem('level') - pinguinlevel) == 0 && characterPic.src.includes("pinguin") == false){
+        pinguinnewSkin.style.display = "block";
+    }else{
+        pinguinnewSkin.style.display = "none";
+    }
+    if((localStorage.getItem('level') - bunnylevel) == 0 && characterPic.src.includes("bunny") == false){
+        bunnynewSkin.style.display = "block";
+    }else{
+        bunnynewSkin.style.display = "none";
+    }
+    if((localStorage.getItem('level') - chickenlevel) == 0 && characterPic.src.includes("chicken") == false){
+        chickennewSkin.style.display = "block";
+    }else{
+        chickennewSkin.style.display = "none";
     }
 }
 
@@ -522,19 +574,19 @@ function removeNewText(Skin){
     chickenskinDiv.style.backgroundColor = "whitesmoke";
     if(Skin == 'giraffe'){
         giraffenewSkin.style.display = "none";
-        giraffeskinDiv.style.backgroundColor = "lightpink";
+        giraffeskinDiv.style.backgroundColor = C4;
     } 
     if(Skin == 'pinguin'){
         pinguinnewSkin.style.display = "none";
-        pinguinskinDiv.style.backgroundColor = "lightpink";
+        pinguinskinDiv.style.backgroundColor = C4;
     }
     if(Skin == 'bunny'){
         bunnynewSkin.style.display = "none";
-        bunnyskinDiv.style.backgroundColor = "lightpink";
+        bunnyskinDiv.style.backgroundColor = C4;
     }
     if(Skin == 'chicken'){
         chickennewSkin.style.display = "none";
-        chickenskinDiv.style.backgroundColor = "lightpink";
+        chickenskinDiv.style.backgroundColor = C4;
     }
     checkifaSkinIsNew();
 }
@@ -587,12 +639,16 @@ var checkDead = setInterval(function () {
                 newValue = 0;
                 momLevel = +localStorage.getItem('level') + +1;
                 levelbarCounter();
+                skincouldBeNew();
+                checkifaSkinIsNew();
                 break;
             case localStorage.getItem('valueStorage') > levelBar.max:
                 overlapingValue = localStorage.getItem('valueStorage') - levelBar.max;
                 localStorage.setItem('valueStorage', overlapingValue);
                 newValue = overlapingValue;
                 levelbarCounter();
+                skincouldBeNew();
+                checkifaSkinIsNew();
                 break;
         }
         while (localStorage.getItem('valueStorage') > levelBar.max) {
@@ -600,6 +656,8 @@ var checkDead = setInterval(function () {
             localStorage.setItem('valueStorage', overlapingValue);
             newValue = overlapingValue;
             levelbarCounter();
+            skincouldBeNew();
+            checkifaSkinIsNew();
         }
         if (levelcounter > 0) {
             levelText.innerHTML = newLevelTextVar + localStorage.getItem('level');

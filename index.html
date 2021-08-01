@@ -82,30 +82,62 @@
                 </div>
                 <div class="settingsText" id="styletxt">Style</div>
                 <div class="einstellungsdiv" id="colorDiv">
-                    <div class="styleDiv" id="standartMode" onclick="standart();">
+                    <div class="styleDiv" id="standartMode" onclick="colorSet('standart');">
                         Standart
-                        <div class="colors" style="background-color: black;"></div>
                         <div class="colors" style="background-color: #FED766;"></div>
                         <div class="colors" style="background-color: lightgreen;"></div>
                         <div class="colors" style="background-color: lightpink;"></div>
-                        <div class="colors" style="background-color: white;"></div>
                         <div class="colors" style="background-color: lightskyblue;"></div>
                         <div class="colors" style="background-color: #fe6666;"></div>
                     </div>
-                    <div class="styleDiv" id="darkMode" onclick="dark();">
+                    <div class="styleDiv" id="darkMode" onclick="colorSet('dark');">
                         Dark
-                        <div class="colors" style="background-color: white;"></div>
                         <div class="colors" style="background-color: #404040;"></div>
                         <div class="colors" style="background-color: #b3b3b3;"></div>
                         <div class="colors" style="background-color: #121212;"></div>
-                        <div class="colors" style="background-color: black;"></div>
-                        <div class="colors" style="background-color: #282828; margin-bottom: -1px;"></div>
+                        <div class="colors" style="background-color: lightgrey;"></div>
+                    </div>
+                    <div class="styleDiv" id="style1Mode" onclick="colorSet('style1');">
+                        Style #1
+                        <div class="colors" style="background-color: #DD5E98;"></div>
+                        <div class="colors" style="background-color: #7EA3CC;"></div>
+                        <div class="colors" style="background-color: #ED9B40;"></div>
+                        <div class="colors" style="background-color: #04A777;"></div>
+                    </div>
+                    <div class="styleDiv" id="style2Mode" onclick="colorSet('style2');">
+                        Style #2
+                        <div class="colors" style="background-color: #C3D350;"></div>
+                        <div class="colors" style="background-color: #E6F14A;"></div>
+                        <div class="colors" style="background-color: #84A07C;"></div>
+                        <div class="colors" style="background-color: #317B22;"></div>
+                    </div>
+                    <div class="styleDiv" id="style3Mode" onclick="colorSet('style3');">
+                        Style #3
+                        <div class="colors" style="background-color: #EE8434;"></div>
+                        <div class="colors" style="background-color: #C95D63;"></div>
+                        <div class="colors" style="background-color: #717EC3;"></div>
+                        <div class="colors" style="background-color: #496DDB;"></div>
+                    </div>
+                    <div class="styleDiv" id="style4Mode" onclick="colorSet('style4');">
+                        Style #4
+                        <div class="colors" style="background-color: #BAF2E9;"></div>
+                        <div class="colors" style="background-color: #B0F2B4;"></div>
+                        <div class="colors" style="background-color: #F2BAC9;"></div>
+                        <div class="colors" style="background-color: #BAD7F2;"></div>
+                    </div>
+                    <div class="styleDiv" id="style5Mode" onclick="colorSet('style5');">
+                        Style #5
+                        <div class="colors" style="background-color: #392F5A;"></div>
+                        <div class="colors" style="background-color: #F092DD;"></div>
+                        <div class="colors" style="background-color: #FFAFF0;"></div>
+                        <div class="colors" style="background-color: #EEC8E0;"></div>
                     </div>
                     <div class="styleDiv">
                         Comming soon
                     </div>
                 </div>
             </div>
+            <br>
         </div>
         <div id="settingstab3d"></div>
         <div id="cloudholder" onclick="gameDivclick();">
